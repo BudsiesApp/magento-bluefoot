@@ -1,0 +1,117 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Debug_Main
+ */
+?>
+<?php if($this->isActive()): ?>
+
+    <style type="text/css">
+        .genecms_debug_accordionWrapper {
+            padding: 30px;
+            background: #fff;
+            float: left;
+            width: 80%;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+
+        .genecms_debug_accordionItem {
+            float: left;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .genecms_debug_accordionItemHeading {
+            cursor: pointer;
+            margin: 0px 0px 10px 0px;
+            padding: 10px;
+            background: #2980b9;
+            color: #fff;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .close .genecms_debug_accordionItemContent {
+            height: 0px;
+            float: left;
+            display: block;
+            overflow: hidden;
+        }
+
+        .open .genecms_debug_accordionItemContent {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            width: 100%;
+            margin: 0px 0px 10px 0px;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .open .genecms_debug_accordionItemHeading {
+            margin: 0px;
+            background-color: #bdc3c7;
+            color: #7f8c8d;
+        }
+    </style>
+
+
+    <div class="genecms_debug_accordionWrapper">
+
+
+        <div class="genecms_debug_accordionItem close">
+            <h3 class="genecms_debug_accordionItemHeading">Layout Handles</h3>
+            <div class="genecms_debug_accordionItemContent">
+                <pre><?php print_r($this->getLayoutHandles()); ?></pre>
+            </div>
+        </div>
+
+        <div class="genecms_debug_accordionItem close">
+            <h3 class="genecms_debug_accordionItemHeading">Request</h3>
+            <div class="genecms_debug_accordionItemContent">
+                <p>Request String: <?php echo Mage::app()->getRequest()->getRequestUri(); ?></p>
+                <p>Module: <?php echo Mage::app()->getRequest()->getControllerModule(); ?></p>
+                <p>Controller: <?php echo Mage::app()->getRequest()->getControllerName(); ?></p>
+                <p>Action: <?php echo Mage::app()->getRequest()->getActionName(); ?></p>
+            </div>
+        </div>
+
+
+        <?php if($app = $this->getCurrentApp()): ?>
+
+            <div class="genecms_debug_accordionItem close">
+                <h3 class="genecms_debug_accordionItemHeading">Current App</h3>
+                <div class="genecms_debug_accordionItemContent">
+                    <pre><?php htmlentities(print_r($app->debug()), 1); ?></pre>
+                </div>
+            </div>
+
+        <?php endif; ?>
+    </div>
+
+    <script type="text/javascript">
+        try {
+            var accItem = document.getElementsByClassName('genecms_debug_accordionItem');
+            var accHD = document.getElementsByClassName('genecms_debug_accordionItemHeading');
+
+            for (i = 0; i < accHD.length; i++) {
+                console.log(accHD[i]);
+                accHD[i].addEventListener('click', toggleDebugItem, false);
+            }
+        }catch (e){}
+
+        function toggleDebugItem() {
+            try {
+                var itemClass = this.parentNode.className;
+                for (i = 0; i < accItem.length; i++) {
+                    accItem[i].className = 'genecms_debug_accordionItem close';
+                }
+                if (itemClass == 'genecms_debug_accordionItem close') {
+                    this.parentNode.className = 'genecms_debug_accordionItem open';
+                }
+            }catch (e){}
+        }
+    </script>
+
+<?php endif; ?>

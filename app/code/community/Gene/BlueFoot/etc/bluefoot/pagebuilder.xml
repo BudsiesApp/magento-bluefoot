@@ -1,0 +1,535 @@
+<?xml version="1.0"?>
+<config>
+    <!-- Declare the content blocks templates and renderer, these are responsible for front-end rendering of each content block -->
+    <content_blocks>
+        <templates>
+            <!-- Basic -->
+            <core_heading>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/basic/heading.phtml]]></file>
+            </core_heading>
+            <core_textarea>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/basic/textarea.phtml]]></file>
+            </core_textarea>
+            <core_hr>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/basic/hr.phtml]]></file>
+            </core_hr>
+            <core_html>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/basic/html.phtml]]></file>
+            </core_html>
+            <core_static_block>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/basic/static-block.phtml]]></file>
+            </core_static_block>
+            <core_buttons>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/basic/buttons.phtml]]></file>
+            </core_buttons>
+            <core_button_item>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/basic/button-item.phtml]]></file>
+            </core_button_item>
+
+            <!-- Structural -->
+            <core_hr>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/structural/hr.phtml]]></file>
+            </core_hr>
+            <core_anchor>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/structural/anchor.phtml]]></file>
+            </core_anchor>
+
+            <!-- Media -->
+            <core_image>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/image.phtml]]></file>
+                <assets>
+                    <fancybox_css>
+                        <type>js_css</type>
+                        <name>gene/bluefoot/resource/jquery/fancybox/jquery.fancybox.min.css</name>
+                    </fancybox_css>
+                    <fancybox_js>
+                        <type>js</type>
+                        <name>gene/bluefoot/resource/jquery/fancybox/jquery.fancybox.min.js</name>
+                    </fancybox_js>
+                </assets>
+            </core_image>
+            <core_driver>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/driver.phtml]]></file>
+            </core_driver>
+            <core_slider>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/slider.phtml]]></file>
+                <assets>
+                    <slick_css>
+                        <type>js_css</type>
+                        <name>gene/bluefoot/resource/jquery/slick/slick.css</name>
+                    </slick_css>
+                    <slick_js>
+                        <type>js</type>
+                        <name>gene/bluefoot/resource/jquery/slick/slick.min.js</name>
+                    </slick_js>
+                </assets>
+            </core_slider>
+            <core_slider_item>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/slider-item.phtml]]></file>
+            </core_slider_item>
+            <core_advanced_slider>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/advanced-slider.phtml]]></file>
+                <assets>
+                    <slick_css>
+                        <type>js_css</type>
+                        <name>gene/bluefoot/resource/jquery/slick/slick.css</name>
+                    </slick_css>
+                    <slick_js>
+                        <type>js</type>
+                        <name>gene/bluefoot/resource/jquery/slick/slick.min.js</name>
+                    </slick_js>
+                </assets>
+            </core_advanced_slider>
+            <core_advanced_slider_item>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/advanced-slider-item.phtml]]></file>
+            </core_advanced_slider_item>
+            <core_video>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/video.phtml]]></file>
+            </core_video>
+
+            <!-- Social -->
+            <core_facebook>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/social/facebook.phtml]]></file>
+            </core_facebook>
+            <core_pinterest_pin>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/social/pinterest-pin.phtml]]></file>
+            </core_pinterest_pin>
+
+            <!-- Commerce -->
+            <core_product>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/ecommerce/single.phtml]]></file>
+            </core_product>
+            <core_product_list>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/ecommerce/list.phtml]]></file>
+            </core_product_list>
+
+            <!-- App -->
+            <core_app_single>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/app/single.phtml]]></file>
+            </core_app_single>
+            <core_app_list>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/app/list.phtml]]></file>
+            </core_app_list>
+
+            <!-- Special -->
+            <core_accordion>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/accordion.phtml]]></file>
+                <assets>
+                    <accordion_js>
+                        <type>js</type>
+                        <name>gene/bluefoot/resource/jquery/bluefoot-accordion/jquery.bluefoot.accordion.js</name>
+                    </accordion_js>
+                </assets>
+            </core_accordion>
+            <core_accordion_item>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/accordion-item.phtml]]></file>
+            </core_accordion_item>
+            <core_tabs>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/tabs.phtml]]></file>
+                <assets>
+                    <tabs_js>
+                        <type>js</type>
+                        <name>gene/bluefoot/resource/jquery/bluefoot-tabs/jquery.bluefoot.tabs.min.js</name>
+                    </tabs_js>
+                    <accordion_js>
+                        <type>js</type>
+                        <name>gene/bluefoot/resource/jquery/bluefoot-accordion/jquery.bluefoot.accordion.js</name>
+                    </accordion_js>
+                </assets>
+            </core_tabs>
+            <core_tabs_item>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/tabs-item.phtml]]></file>
+            </core_tabs_item>
+            <core_newsletter>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/newsletter.phtml]]></file>
+            </core_newsletter>
+            <core_map>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/map.phtml]]></file>
+            </core_map>
+            <core_search>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/search.phtml]]></file>
+            </core_search>
+            <core_code>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/special/code.phtml]]></file>
+                <assets>
+                    <code_js>
+                        <type>js</type>
+                        <name>gene/bluefoot/resource/highlight/highlight.pack.js</name>
+                    </code_js>
+                    <code_css>
+                        <type>js_css</type>
+                        <name>gene/bluefoot/resource/highlight/styles/monokai-sublime.css</name>
+                    </code_css>
+                </assets>
+            </core_code>
+            <custom_audio>
+                <file><![CDATA[gene/bluefoot/pagebuilder/blocks/core/media/audio.phtml]]></file>
+            </custom_audio>
+        </templates>
+        <renderers>
+
+            <!-- Basic -->
+            <core_default>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_default]]></class>
+            </core_default>
+            <core_heading>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_heading]]></class>
+            </core_heading>
+            <core_static_block>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_staticblock]]></class>
+            </core_static_block>
+
+            <!-- Media -->
+            <core_image>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_image]]></class>
+            </core_image>
+            <core_video>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_video]]></class>
+            </core_video>
+
+            <!-- Ecommerce -->
+            <core_product>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_catalog_single]]></class>
+            </core_product>
+            <core_product_list>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_catalog_list]]></class>
+            </core_product_list>
+
+            <!-- Apps -->
+            <core_app_single>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_app_single]]></class>
+            </core_app_single>
+            <core_app_list>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_app_list]]></class>
+            </core_app_list>
+
+            <!-- Special -->
+            <core_newsletter>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_newsletter]]></class>
+            </core_newsletter>
+            <core_map>
+                <class><![CDATA[gene_bluefoot/entity_pagebuilder_block_map]]></class>
+            </core_map>
+
+        </renderers>
+    </content_blocks>
+
+    <!-- Declare the fields associated with static structural elements -->
+    <structural>
+        <row>
+            <template><![CDATA[gene/bluefoot/pagebuilder/structural/core/row.phtml]]></template>
+            <renderer><![CDATA[gene_bluefoot/entity_pagebuilder_structural_row]]></renderer>
+            <icon><![CDATA[]]></icon>
+            <name><![CDATA[Row]]></name>
+            <color><![CDATA[#a5a5a5]]></color>
+            <fields>
+                <template>
+                    <label><![CDATA[Template]]></label>
+                    <type>select</type>
+                    <code>template</code>
+                    <source_model>gene_bluefoot/stage_source_row_template</source_model>
+                </template>
+                <background_color>
+                    <label><![CDATA[Background Color]]></label>
+                    <type>widget</type>
+                    <widget>color</widget>
+                    <code>background_color</code>
+                </background_color>
+                <background_image>
+                    <label><![CDATA[Background Image]]></label>
+                    <type>widget</type>
+                    <widget>upload</widget>
+                    <code>background_image</code>
+                </background_image>
+                <css_classes>
+                    <group><![CDATA[Advanced]]></group>
+                    <label><![CDATA[CSS Classes]]></label>
+                    <type>widget</type>
+                    <widget>tags</widget>
+                    <code>css_classes</code>
+                </css_classes>
+            </fields>
+        </row>
+        <column>
+            <template><![CDATA[gene/bluefoot/pagebuilder/structural/core/column.phtml]]></template>
+            <renderer><![CDATA[gene_bluefoot/entity_pagebuilder_structural_column]]></renderer>
+            <icon><![CDATA[]]></icon>
+            <name><![CDATA[Column]]></name>
+            <color><![CDATA[#858585]]></color>
+            <fields>
+                <css_classes>
+                    <group><![CDATA[Advanced]]></group>
+                    <label><![CDATA[CSS Classes]]></label>
+                    <type>text</type>
+                    <code>css_classes</code>
+                </css_classes>
+            </fields>
+        </column>
+    </structural>
+
+    <!-- Declare the available widgets -->
+    <widgets>
+        <gene_upload translate="label">
+            <label>Upload</label>
+            <alias>upload</alias>
+            <input_type>file</input_type>
+            <group>BlueFoot</group>
+        </gene_upload>
+        <gene_tag translate="label">
+            <label>Tag</label>
+            <alias>tags</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+        </gene_tag>
+        <gene_color translate="label">
+            <label>Color Picker</label>
+            <alias>color</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+        </gene_color>
+        <gene_map translate="label">
+            <label>Google Map</label>
+            <alias>map</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+            <data_model>gene_bluefoot/attribute_data_widget_map</data_model>
+        </gene_map>
+        <gene_search_product translate="label">
+            <label>Product Search</label>
+            <alias>search/product</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+            <data_model>gene_bluefoot/attribute_data_widget_product</data_model>
+        </gene_search_product>
+        <gene_search_category translate="label">
+            <label>Category Search</label>
+            <alias>search/category</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+            <data_model>gene_bluefoot/attribute_data_widget_category</data_model>
+        </gene_search_category>
+        <gene_search_staticblock translate="label">
+            <label>Static Block Search</label>
+            <alias>search/staticblock</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+            <data_model>gene_bluefoot/attribute_data_widget_staticblock</data_model>
+        </gene_search_staticblock>
+        <gene_video translate="label">
+            <label>Video</label>
+            <alias>video</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+            <data_model>gene_bluefoot/attribute_data_widget_video</data_model>
+        </gene_video>
+        <gene_search_app_entity translate="label">
+            <label>App Entity Search</label>
+            <alias>search/app/entity</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+            <data_model>gene_bluefoot/attribute_data_widget_app_single</data_model>
+        </gene_search_app_entity>
+        <gene_search_app_collection translate="label">
+            <label>App Collection Search</label>
+            <alias>search/app/collection</alias>
+            <input_type>text</input_type>
+            <group>BlueFoot</group>
+            <data_model>gene_bluefoot/attribute_data_widget_app_list</data_model>
+        </gene_search_app_collection>
+        <gene_audio translate="label">
+            <label>Audio</label>
+            <alias>audio</alias>
+            <input_type>file</input_type>
+            <group>BlueFoot</group>
+        </gene_audio>
+    </widgets>
+
+    <!-- Include our core widgets as plugins -->
+    <plugins>
+        <js>
+            <gene_widget_upload>
+                <gene_upload_dropzone>
+                    <alias>bluefoot/dropzone</alias>
+                    <path>resource/dropzone</path>
+                </gene_upload_dropzone>
+                <gene_upload_widget>
+                    <alias>bluefoot/widget/upload</alias>
+                    <path>widget/core/upload</path>
+                </gene_upload_widget>
+            </gene_widget_upload>
+            <gene_widget_color>
+                <gene_color_widget>
+                    <alias>bluefoot/widget/color</alias>
+                    <path>widget/core/color</path>
+                </gene_color_widget>
+            </gene_widget_color>
+            <gene_widget_wysiwyg>
+                <gene_wysiwyg_widget>
+                    <alias>bluefoot/widget/wysiwyg</alias>
+                    <path>widget/core/wysiwyg</path>
+                </gene_wysiwyg_widget>
+            </gene_widget_wysiwyg>
+            <gene_widget_tags>
+                <gene_tags_widget>
+                    <alias>bluefoot/widget/tags</alias>
+                    <path>widget/core/tags</path>
+                </gene_tags_widget>
+            </gene_widget_tags>
+            <gene_widget_map>
+                <gene_map_widget>
+                    <alias>bluefoot/widget/map</alias>
+                    <path>widget/core/map</path>
+                </gene_map_widget>
+            </gene_widget_map>
+            <gene_widget_child_blocks>
+                <gene_child_blocks_widget>
+                    <alias>bluefoot/widget/child_block</alias>
+                    <path>widget/core/child_block</path>
+                </gene_child_blocks_widget>
+            </gene_widget_child_blocks>
+            <gene_widget_product_search>
+                <gene_product_search_widget>
+                    <alias>bluefoot/widget/search/product</alias>
+                    <path>widget/core/search/product</path>
+                </gene_product_search_widget>
+            </gene_widget_product_search>
+            <gene_widget_category_search>
+                <gene_category_search_widget>
+                    <alias>bluefoot/widget/search/category</alias>
+                    <path>widget/core/search/category</path>
+                </gene_category_search_widget>
+            </gene_widget_category_search>
+            <gene_widget_staticblock_search>
+                <gene_staticblock_search_widget>
+                    <alias>bluefoot/widget/search/staticblock</alias>
+                    <path>widget/core/search/staticblock</path>
+                </gene_staticblock_search_widget>
+            </gene_widget_staticblock_search>
+            <gene_widget_video>
+                <gene_video>
+                    <alias>bluefoot/widget/video</alias>
+                    <path>widget/core/video</path>
+                </gene_video>
+            </gene_widget_video>
+            <gene_metric>
+                <gene_metric_widget>
+                    <alias>bluefoot/widget/metric</alias>
+                    <path>widget/core/metric</path>
+                </gene_metric_widget>
+            </gene_metric>
+            <gene_align_widget>
+                <gene_align_widget>
+                    <alias>bluefoot/widget/align</alias>
+                    <path>widget/core/align</path>
+                  </gene_align_widget>
+            </gene_align_widget>
+            <gene_app_entity_search>
+                <gene_app_entity_search_widget>
+                    <alias>bluefoot/widget/search/app/entity</alias>
+                    <path>widget/core/search/app/entity</path>
+                </gene_app_entity_search_widget>
+            </gene_app_entity_search>
+            <gene_app_collection_search>
+                <gene_app_collection_search_widget>
+                    <alias>bluefoot/widget/search/app/collection</alias>
+                    <path>widget/core/search/app/collection</path>
+                </gene_app_collection_search_widget>
+            </gene_app_collection_search>
+            <gene_audio_upload>
+                <gene_audio_dropzone>
+                    <alias>bluefoot/dropzone</alias>
+                    <path>resource/dropzone</path>
+                </gene_audio_dropzone>
+                <gene_audio_widget>
+                    <alias>bluefoot/widget/audio</alias>
+                    <path>widget/core/audio</path>
+                </gene_audio_widget>
+            </gene_audio_upload>
+        </js>
+
+
+        <!-- Declare plugins that need to be loaded alongside jQuery -->
+        <jquery>
+            <jquery_tag_it>
+                <alias>jquery/tag-it</alias>
+                <path>resource/jquery/tag-it/tag-it.min</path>
+                <deps>
+                    <jquery_ui>bluefoot/jquery/ui</jquery_ui>
+                </deps>
+            </jquery_tag_it>
+            <jquery_touch_punch>
+                <alias>jquery/ui-touch-punch</alias>
+                <path>resource/jquery-ui/jquery.ui.touch-punch.min</path>
+                <deps>
+                    <jquery_ui>bluefoot/jquery/ui</jquery_ui>
+                </deps>
+            </jquery_touch_punch>
+            <jquery_bluefoot_accordion>
+                <alias>jquery/bluefoot-accordion</alias>
+                <path>resource/jquery/bluefoot-accordion/jquery.bluefoot.accordion.min</path>
+            </jquery_bluefoot_accordion>
+            <jquery_bluefoot_tabs>
+                <alias>jquery/bluefoot-tabs</alias>
+                <path>resource/jquery/bluefoot-tabs/jquery.bluefoot.tabs.min</path>
+            </jquery_bluefoot_tabs>
+            <jquery_bluefoot_normalise_heights>
+                <alias>jquery/bluefoot-normalise-heights</alias>
+                <path>resource/jquery/bluefoot-normalise-heights/jquery.bluefoot.normaliseHeights.min</path>
+            </jquery_bluefoot_normalise_heights>
+            <jquery_slick>
+                <alias>jquery/slick</alias>
+                <path>resource/jquery/slick/slick.min</path>
+            </jquery_slick>
+            <highlight>
+                <alias>highlight</alias>
+                <path>resource/highlight/highlight.pack</path>
+            </highlight>
+        </jquery>
+
+        <!-- Any remote async plugins to be loaded within the admin -->
+        <async>
+            <google_maps>
+                <path>//maps.google.com/maps/api/js</path>
+            </google_maps>
+        </async>
+    </plugins>
+
+    <!-- Declare widgets and input types that have functions that need to run on build -->
+    <on_build>
+        <widgets>
+            <gene_align_widget>
+                <widget>align</widget>
+                <method>updateEntity</method>
+            </gene_align_widget>
+        </widgets>
+    </on_build>
+
+    <!-- Declare any global fields that are attached to all content blocks & structural elements -->
+    <global_fields>
+        <align>
+            <group>Advanced</group>
+            <label><![CDATA[Align]]></label>
+            <type>widget</type>
+            <widget>align</widget>
+            <code>align</code>
+        </align>
+        <metric>
+            <group>Advanced</group>
+            <label><![CDATA[Metrics]]></label>
+            <type>widget</type>
+            <widget>metric</widget>
+            <code>metric</code>
+        </metric>
+    </global_fields>
+
+    <row_templates>
+        <default>
+            <label><![CDATA[Default]]></label>
+            <value>row.phtml</value>
+        </default>
+        <full_width>
+            <label><![CDATA[Full Width]]></label>
+            <value>row/full-width.phtml</value>
+        </full_width>
+    </row_templates>
+</config>

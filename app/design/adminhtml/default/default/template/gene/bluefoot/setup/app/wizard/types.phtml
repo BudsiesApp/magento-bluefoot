@@ -1,0 +1,56 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_App_Wizard_Types
+ */
+
+?>
+<div class="entry-edit">
+    <?php echo $this->getFormHtml();?>
+</div>
+
+<div class="entry-edit">
+    <div class="fieldset">
+        <div class="hor-scroll">
+            <button type="button" onclick="typeWizard.addNew();"><?php echo $this->__('Add New Content Type'); ?></button>
+        </div>
+    </div>
+</div>
+
+<?php if($this->hasNewContentTypes()): ?>
+<div class="entry-edit">
+    <?php foreach($this->getNewContentTypes() as $contentType): ?>
+        <?php $contentType = new Varien_Object($contentType); ?>
+            <div class="fieldset">
+                <div class="hor-scroll">
+
+                    <div class="heading-col">
+                        <h3 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $contentType->getName() ?></h3>
+                        <button onclick="typeWizard.removeType('<?php echo $this->getRemoveUrl($contentType->getIdentifier()); ?>')"><?php echo $this->__('Remove'); ?></button>
+                    </div>
+                    <div class="info-col">
+                        <div class="gene-bluefoot-inner-info info-col-row">
+                            <strong><?php echo $this->__('Identifier:'); ?></strong> <?php echo $contentType->getIdentifier(); ?>
+                        </div>
+                        <div class="gene-bluefoot-inner-info info-col-row">
+                            <strong><?php echo $this->__('Singular Name:'); ?></strong> <?php echo $contentType->getSingularName(); ?>
+                        </div>
+                        <div class="gene-bluefoot-inner-info info-col-row">
+                            <strong><?php echo $this->__('Plural Name:'); ?></strong> <?php echo $contentType->getPluralName(); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+
+<?php endif; ?>
+
+<?php echo $this->getChildHtml('form_after');?>
+
+
+<?php if($this->showNewTypeForm()): ?>
+<div id="content-type-container" style="">
+    <?php echo $this->getNewTypeHtml(); ?>
+</div>
+<?php endif; ?>

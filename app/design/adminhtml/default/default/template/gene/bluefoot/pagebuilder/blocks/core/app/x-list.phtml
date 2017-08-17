@@ -1,0 +1,30 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * App Entity List
+ * @var $this Gene_BlueFoot_Block_Entity_PageBuilder_Block_App_List
+ *
+ */
+?>
+<div class="gene-bluefoot-app-entity-list gene-bluefoot-pagebuilder-block clearfix bluefoot-nomralise-heights-need-init">
+
+    {{#app_entity_collection.entities}}
+    <div class="bluefoot-app-entity bluefoot-normalise-heights">
+        <img src="{{ image }}" class="bluefoot-app-entity-image"/>
+        <div class="bluefoot-app-entity-content">
+            <h3>{{ title }}</h3>
+            <p class="date">{{ date }}</p>
+            <p>{{excerpt}}</p>
+        </div>
+    </div>
+    {{/app_entity_collection.entities}}
+</div>
+<script type="text/javascript">
+    var elem = jQuery('.bluefoot-nomralise-heights-need-init');
+    elem.bluefootNormaliseHeights();
+    elem.removeClass('bluefoot-nomralise-heights-need-init');
+</script>

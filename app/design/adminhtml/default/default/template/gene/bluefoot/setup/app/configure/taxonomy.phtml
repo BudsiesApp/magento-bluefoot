@@ -1,0 +1,79 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_App_Edit_Tab_Taxonomy
+ */
+$taxonomies = $this->getTaxonomies();
+?>
+<style type="text/css">
+    .gene-bluefoot-tax-info {
+        padding:0 0 5px 0;
+    }
+
+    .gene-bluefoot-tax-info {
+        padding:0 0 5px 0;
+    }
+
+    .content-tax-info{
+        overflow: auto;
+    }
+
+    .content-tax-info .heading-col{
+        width:200px;
+        float:left;
+
+    }
+
+    .content-tax-info .info-col{
+        float:left;
+    }
+
+</style>
+
+<?php if($this->_getCurrentApp()->getId()): ?>
+    <div class="fieldset-wide fieldset content-fieldset">
+        <button type="button" class="add-new scalable gene-cms" onclick="deleteConfirm('Doing this will remove any unsaved changes from the current page. Do you wish to continue?','<?php echo $this->getCreateUrl(); ?>'); return false; ">Create new Taxonomy</button>
+    </div>
+
+<?php else: ?>
+
+    <div class="fieldset-wide fieldset content-fieldset">
+        <p>Please save App before creating taxonomies</p>
+    </div>
+
+<?php endif; ?>
+
+<?php if ($taxonomies && count($taxonomies)) : ?>
+
+    <?php foreach($taxonomies as $tax) : ?>
+
+    <div class="fieldset-wide fieldset tax-fieldset">
+
+        <div class="content-tax-info" id="tax-info-<?php echo $tax->getId(); ?>">
+
+            <div class="heading-col">
+                <h3 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $tax->getTitle(); ?></h3>
+                <p>Internal Id: <?php echo $tax->getId(); ?></p>
+                <button type="button" class="edit-content-type scalable" onclick="setLocation('<?php echo $this->getEditUrl($tax->getId()); ?>'); return false; ">Edit Taxonomy </button>
+            </div>
+
+            <div class="info-col">
+
+                <?php foreach($this->getInfoDataFields() as $_infoKey => $_infoLabel): ?>
+                    <div class="gene-bluefoot-tax-info">
+                        <strong><?php echo $_infoLabel ?>:</strong> <?php echo $tax->getData($_infoKey) ? $tax->getData($_infoKey) : '' ?>
+                    </div>
+                <?php endforeach; ?>
+
+                <div class="buttons-set gene-bluefoot-type-infotype-info">
+
+                    <button type="button" class="add-new scalable" onclick="setLocation('<?php echo $this->getAddUrl($tax->getId()); ?>'); return false; ">Add New <?php echo $tax->getTitle(); ?> Term</button>
+                    <button type="button" class="view-all scalable" onclick="setLocation('<?php echo $this->getViewUrl($tax->getId()); ?>'); return false; ">View All <?php echo $tax->getTitle(); ?> Terms</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<?php endforeach; ?>
+
+<?php endif; ?>

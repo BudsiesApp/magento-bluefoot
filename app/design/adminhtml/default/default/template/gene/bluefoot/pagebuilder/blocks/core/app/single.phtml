@@ -1,0 +1,20 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Single App Entity
+ * @var $this Gene_BlueFoot_Block_Entity_PageBuilder_Block_App_Single
+ *
+ */
+?>
+<div class="bluefoot-app-entity gene-bluefoot-pagebuilder-block clearfix bluefoot-entity-align-{{ align }}">
+    <img src="{{ app_entity_id.image }}" class="bluefoot-app-entity-image"/>
+    <div class="bluefoot-app-entity-content">
+        <h3>{{ app_entity_id.title }}</h3>
+        <p class="date">{{ app_entity_id.date }}</p>
+        <p>{{app_entity_id.excerpt}}</p>
+    </div>
+</div>

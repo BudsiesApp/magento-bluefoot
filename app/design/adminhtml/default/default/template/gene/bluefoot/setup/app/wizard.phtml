@@ -1,0 +1,326 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_App_Wizard
+ * @todo Move styling into CSS file
+ */
+
+?>
+<script type="text/javascript">
+    var AppWizard = Class.create();
+    AppWizard.prototype = {
+        initialize: function (formId) {
+            this.formId = formId;
+
+            if($(this.formId)){
+                this.validator  = new Validation(this.formId, {onElementValidate : this.checkErrors.bind(this)});
+            }
+        },
+
+        reinit: function(){
+            if($(this.formId)){
+                this.validator  = new Validation(this.formId, {onElementValidate : this.checkErrors.bind(this)});
+            }
+        },
+
+        setReloadStepUrl: function(url){
+            this.reloadStepUrl = url;
+        },
+
+        backStep: function(backUrl){
+            this.update(backUrl);
+        },
+
+        reloadStep: function(){
+            if(this.reloadStepUrl){
+                this.update(this.reloadStepUrl);
+            }
+        },
+
+        saveStep: function(){
+            if(this.validator && this.validator.validate()){
+                this._saveStep();
+                return true;
+            }
+            return false;
+        },
+
+        _saveStep:function(){
+            var $form = $(this.formId);
+            if(this.submitUrl){
+                $form.action = this.submitUrl;
+            }
+
+            this._saveForm(this.formId);
+        },
+
+        stepFailure: function(){
+
+        },
+
+        stepResponse: function(response){
+
+            if(response.error_alert) {
+                alert(response.error_alert);
+            }
+
+            if (response.update) {
+
+
+                try {
+                    updateSections = $H(response.update);
+                    updateSections.each(function (item) {
+                        console.log('update: ' + item.key);
+                        $(item.key).update(item.value);
+                        if (!$(item.key).visible()) {
+                            $(item.key).show();
+                        }
+                        if (item.key == 'app-step-additional' && item.value == '') {
+                            $('app-step-additional').hide();
+                        } else {
+                            $('app-step-additional').show();
+                        }
+                    });
+                }catch (err){
+                    alert('Exception: ' + err.message);
+                }
+            }
+
+            if(response.redirect){
+                location.href = response.redirect;
+                return true;
+            }
+
+            if(response.showhide){
+                console.log('showhide')
+                console.log(response.showhide);
+                try {
+                    updateSections = $H(response.showhide);
+                    updateSections.each(function (item) {
+                        if(item.value == 'show' || item.value === true){
+                            $(item.key).show();
+                        }else if(item.value == 'hide' || item.value === false){
+                            $(item.key).hide();
+                        }
+                    });
+                }catch (err){
+                    alert(err.message);
+                }
+            }
+
+            this.reinit();
+
+        },
+
+        initCurrentStep: function(){
+
+        },
+
+        update: function(url){
+            return this._update(url);
+        },
+
+        _update: function(url){
+            try {
+                var request = new Ajax.Request(
+                    url,
+                    {
+                        method: 'post',
+                        dataType: 'json',
+                        onSuccess: function (transport) {
+                            try {
+                                response = eval('(' + transport.responseText + ')');
+
+                                this.stepResponse(response);
+                            } catch (e) {
+                                alert('Exception while trying to load next step: ' + e.message);
+                            }
+
+                        }.bind(this),
+                        onFailure: function(){
+                            this.stepFailure();
+                        }.bind(this)
+                    });
+            }catch (err){
+                alert('Exception (JS): ' + err.message);
+            }
+        },
+
+        _saveForm: function(formId, url){
+
+            var $form = $(formId);
+
+            if(url === undefined){
+                url = $form.action;
+            }
+
+            try {
+                var request = new Ajax.Request(
+                    url,
+                    {
+                        method: 'post',
+                        parameters: Form.serialize($form),
+                        dataType: 'json',
+                        onComplete: function () {
+
+                        },
+                        onSuccess: function (transport) {
+                            try {
+                                response = eval('(' + transport.responseText + ')');
+
+                                this.stepResponse(response);
+                            } catch (e) {
+                                alert('Exception while trying to load next step: ' + e.message);
+                            }
+
+                        }.bind(this),
+                        onFailure: function(){
+                            this.stepFailure();
+                        }.bind(this)
+                    });
+            }catch (err){
+                alert('Exception (JS): ' + err.message);
+            }
+        },
+
+        saveAdditional: function(formId){
+            var $form = $(formId);
+
+            validator  = new Validation(formId, {onElementValidate : this.checkErrors.bind(this)});
+
+            if(validator && validator.validate()){
+
+            }else{
+                alert('Please review form and fix any highlighted errors');
+                return false;
+            }
+
+            this._saveForm(formId);
+        },
+
+
+
+        loadAdditional:function(url){
+            var $form = $(this.formId);
+
+            this._saveForm(this.formId, url);
+
+        },
+
+        checkErrors : function(result, elm){
+            if(!result)
+                elm.setHasError(true, this);
+            else
+                elm.setHasError(false, this);
+        }
+    }
+
+    var ContentTypeWizard = Class.create();
+    ContentTypeWizard.prototype = {
+        initialize:function(){
+
+        },
+
+        addNew:function(){
+
+            displayLoadingMask();
+            setLocation("<?php echo $this->getNewContentTypeUrl() ?>");
+            return;
+        },
+
+        removeType:function(removeUrl){
+            appWizard.update(removeUrl);
+        }
+
+    }
+
+    function displayLoadingMask()
+    {
+        var loaderArea = $$('#html-body .wrapper')[0]; // Blocks all page
+        Position.clone($(loaderArea), $('loading-mask'), {offsetLeft:-2});
+        toggleSelectsUnderBlock($('loading-mask'), false);
+        Element.show('loading-mask');
+    }
+</script>
+<?php echo $this->getFormInitScripts() ?>
+<div id="wizard-progress">
+<?php echo $this->getChildHtml('progress'); ?>
+</div>
+<div id="app-wizard" class="bluefoot-admin">
+    <div class="content-header">
+        <?php //echo $this->getHeaderHtml() ?>
+
+            <div id="wizard-navigation" <?php if($this->getHideButtons()): ?> style="display: none;" <?php endif; ?>>
+                <p class="form-buttons"><?php echo $this->getButtonsHtml('header') ?></p>
+            </div>
+            <div id="wizard-navigation-replace" <?php if(!$this->getHideButtons()): ?> style="display: none;" <?php endif; ?>>
+                <p class="form-buttons"><strong>Please complete current actions before you continue</strong></p>
+            </div>
+
+    </div>
+
+    <div id="step-info">
+        <?php echo $this->getStepInfoBlockHtml($this->getCurrentStep()); ?>
+    </div>
+
+    <div id="app-wizard-step">
+    <?php echo $this->getStepBlockHtml($this->getCurrentStep()); ?>
+    </div>
+
+    <?php if ($this->hasFooterButtons()): ?>
+        <div class="content-footer">
+            <p class="form-buttons"><?php echo $this->getButtonsHtml('footer') ?></p>
+        </div>
+    <?php endif; ?>
+
+    <div id="app-step-additional" style="display: none;">
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    //editForm = new varienForm('edit_form', '<?php echo $this->getValidationUrl() ?>');
+    var appWizard = new AppWizard('edit_form');
+    appWizard.setReloadStepUrl('<?php echo $this->getReloadStepUrl(); ?>');
+    var typeWizard = new ContentTypeWizard();
+
+</script>
+
+    <script type="text/javascript">
+
+        function setJsonField(){
+
+            if(typeof TreePanels == 'undefined'){
+                return true;
+            }
+
+            TreePanels.rebuildTrees();
+            var _validator = new Validation('set_prop_form', {onSubmit:false});
+            if( !_validator.validate() ) {
+                return false;
+            }
+            var req = Ext.util.JSON.encode(editSet.req);
+
+            $('sets_json').setValue(req);
+
+            return true;
+        }
+
+
+        function saveContentType(){
+            try{
+                if(setJsonField()){
+                    //content_type_form.submit($('edit_form').action+'back/edit/');
+                    appWizard.saveAdditional('content_type_form');
+                }else{
+                    return false;
+                }
+
+            }catch(e){
+                alert('Error saving attributes. Error: ' + e.message);
+            }
+        }
+
+    </script>
+
+<?php echo $this->getFormScripts() ?>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gene_BlueFoot>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Gene_BlueFoot>
+        <Enterprise_PageCache>
+            <depends>
+                <Gene_BlueFoot />
+            </depends>
+        </Enterprise_PageCache>
+    </modules>
+</config>

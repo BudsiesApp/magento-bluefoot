@@ -1,0 +1,24 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Content View Template
+ * @var $this Gene_BlueFoot_Block_Entity_Content_View
+ *
+ */
+$_entity = $this->getEntity();
+$_helper = Mage::helper('gene_bluefoot');
+$_imageHelper = Mage::helper('gene_bluefoot/image');
+
+?>
+
+<div id="bluefoot-content-view-<?php echo $_entity->getId(); ?>" class="bluefoot-content-view-content">
+    <?php if(($_image = $_entity->getFeaturedImage()) /*&& ($_entity->hasEnableFeaturedImage() && $_entity->getEnableFeaturedImage())*/): ?>
+        <img src="<?php echo $_imageHelper->init($_image)->useConfig('medium'); ?>" alt="<?php echo $_entity->getTitle(); ?>" class="bluefoot-content-featured-image"/>
+    <?php endif; ?>
+
+    <?php echo $_entity->getMainContent(); ?>
+</div>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout>
+
+    <default>
+        <reference name="notifications">
+            <block type="gene_bluefoot/adminhtml_notifications" name="gene.bluefoot.notification" template="gene/bluefoot/notifications.phtml"/>
+        </reference>
+        <reference name="head">
+            <!-- CSS Files -->
+            <action method="addCss">
+                <file>gene/bluefoot/cms.css</file>
+            </action>
+
+            <!-- Js Library CSS Files -->
+            <action method="addItem">
+                <type>js_css</type>
+                <name>gene/bluefoot/resource/jquery/tag-it/jquery.tagit.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>gene/bluefoot/resource/jquery/tag-it/tagit.ui-zendesk.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>gene/bluefoot/resource/jquery/slick/slick.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>gene/bluefoot/resource/highlight/styles/monokai-sublime.css</name>
+            </action>
+
+            <!-- JS Files -->
+            <action method="addJs">
+                <file>jscolor/jscolor.js</file>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="gene_bluefoot/adminhtml_stage_init" template="gene/bluefoot/init.phtml" name="gene.cms.adminhtml.stage.init"/>
+        </reference>
+    </default>
+
+    <adminhtml_genecms_entity_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addCss">
+                <name>lib/prototype/windows/themes/magento.css</name>
+            </action>
+            <action method="addJs">
+                <file>gene/bluefoot/entity/edit.js</file>
+            </action>
+        </reference>
+    </adminhtml_genecms_entity_edit>
+
+</layout>

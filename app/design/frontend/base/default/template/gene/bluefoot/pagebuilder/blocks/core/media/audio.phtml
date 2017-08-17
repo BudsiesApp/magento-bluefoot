@@ -1,0 +1,29 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Frank Clark <frank@gene.co.uk>
+ *
+ * Image Template
+ * @var $this Gene_BlueFoot_Block_Entity_Pagebuilder_Block_Default
+ *
+ */
+$entity = $this->getEntity();
+$helper = Mage::helper('gene_bluefoot');
+$audioPath = Mage::getBaseUrl('media') . 'gene-bluefoot/' . $entity->getAudioFile();
+$audioFileTitle = $entity->getAudioFileTitle();
+
+?>
+<div id="bluefoot-audio-<?php echo $entity->getId(); ?>" class="bluefoot-audio <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>>
+
+    <?php if ($entity->getAudioFile()) : ?>
+        <?php if ($audioFileTitle) : ?>
+            <p><?php echo $audioFileTitle; ?></p>
+        <?php endif; ?>
+        <audio controls>
+            <source src="<?php echo $audioPath; ?>" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    <?php endif; ?>
+</div>

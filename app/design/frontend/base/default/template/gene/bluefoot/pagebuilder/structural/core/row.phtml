@@ -1,0 +1,21 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Row default Template
+ * @var $this Gene_BlueFoot_Block_Entity_Pagebuilder_Structural_Row
+ *
+ */
+if ($this->getBackgroundStyles()):
+    $this->setCssClasses('with-media-background');
+endif;
+?>
+
+<div class="bluefoot-row <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>>
+    <div class="bluefoot-wrapper">
+        <?php echo $this->getRenderedChildHtml(); ?>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_App_Wizard_Success
+ */
+
+$createdApp = $this->getCreatedApp();
+?>
+<div class="content-header">
+    <h3>Success</h3>
+</div>
+<div class="entry-edit">
+    <h4>You have successfully created your app and it should now appear in the menu. Why not create some content.</h4>
+</div>
+<?php if($createdApp && $createdApp->getId()): ?>
+    <?php $contentTypes = $createdApp->getContentTypes(); ?>
+    <?php foreach($contentTypes as $contentType): ?>
+        <p><a href="<?php echo $this->getUrl('adminhtml/genecms_entity/new', array('type_id' => $contentType->getId())) ?>">Create a <?php echo $contentType->getSingularName(); ?></a></p>
+    <?php endforeach; ?>
+<?php endif; ?>

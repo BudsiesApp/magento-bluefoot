@@ -1,0 +1,429 @@
+{
+  "_time": "1459776414",
+  "content_blocks": [
+    {
+      "identifier": "slider",
+      "name": "Slider",
+      "content_type": "block",
+      "description": "Slider \/ Carousel",
+      "url_key_prefix": null,
+      "preview_field": null,
+      "renderer": "core_default",
+      "item_view_template": "core_slider",
+      "list_template": null,
+      "list_item_template": null,
+      "item_layout_update_xml": null,
+      "list_layout_update_xml": null,
+      "singular_name": "Slider",
+      "plural_name": null,
+      "include_in_sitemap": "0",
+      "searchable": "0",
+      "icon_class": "fa fa-random",
+      "color": "#5284bd",
+      "show_in_page_builder": "1",
+      "sort_order": "300",
+      "group": "media",
+      "attribute_data": {
+        "attributes": [
+          "slider_items",
+          "autoplay",
+          "autoplay_speed",
+          "fade",
+          "is_infinite",
+          "show_arrows",
+          "show_dots",
+          "slider_responsive_settings",
+          "slides_to_scroll",
+          "slides_to_show",
+          "css_classes"
+        ],
+        "groups": [
+          {
+            "attribute_group_name": "Slides",
+            "sort_order": "1",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "slider_items",
+                "sort_order": "2"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Settings",
+            "sort_order": "2",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "autoplay",
+                "sort_order": "2"
+              },
+              {
+                "attribute_code": "autoplay_speed",
+                "sort_order": "4"
+              },
+              {
+                "attribute_code": "fade",
+                "sort_order": "6"
+              },
+              {
+                "attribute_code": "is_infinite",
+                "sort_order": "8"
+              },
+              {
+                "attribute_code": "show_arrows",
+                "sort_order": "10"
+              },
+              {
+                "attribute_code": "show_dots",
+                "sort_order": "12"
+              },
+              {
+                "attribute_code": "slider_responsive_settings",
+                "sort_order": "14"
+              },
+              {
+                "attribute_code": "slides_to_scroll",
+                "sort_order": "16"
+              },
+              {
+                "attribute_code": "slides_to_show",
+                "sort_order": "18"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Advanced",
+            "sort_order": "3",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "css_classes",
+                "sort_order": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "identifier": "accordion",
+      "name": "Accordion",
+      "content_type": "block",
+      "description": "Accordion",
+      "url_key_prefix": null,
+      "preview_field": null,
+      "renderer": "core_default",
+      "item_view_template": "core_accordion",
+      "list_template": null,
+      "list_item_template": null,
+      "item_layout_update_xml": null,
+      "list_layout_update_xml": null,
+      "singular_name": "Accordion",
+      "plural_name": null,
+      "include_in_sitemap": "0",
+      "searchable": "0",
+      "icon_class": "fa fa-list",
+      "color": "#5284bd",
+      "show_in_page_builder": "1",
+      "sort_order": "100",
+      "group": "other",
+      "attribute_data": {
+        "attributes": [
+          "accordion_items",
+          "css_classes"
+        ],
+        "groups": [
+          {
+            "attribute_group_name": "General",
+            "sort_order": "1",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "accordion_items",
+                "sort_order": "2"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Advanced",
+            "sort_order": "2",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "css_classes",
+                "sort_order": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "identifier": "button_item",
+      "name": "Button",
+      "content_type": "block",
+      "description": "Single Button",
+      "url_key_prefix": null,
+      "preview_field": "link_text",
+      "renderer": "core_default",
+      "item_view_template": "core_button_item",
+      "list_template": null,
+      "list_item_template": null,
+      "item_layout_update_xml": null,
+      "list_layout_update_xml": null,
+      "singular_name": "Button",
+      "plural_name": null,
+      "include_in_sitemap": "0",
+      "searchable": "0",
+      "icon_class": "fa fa-mouse-pointer",
+      "color": "#5284bd",
+      "show_in_page_builder": "0",
+      "sort_order": "0",
+      "group": "general",
+      "attribute_data": {
+        "attributes": [
+          "link_text",
+          "link_url",
+          "target_blank",
+          "css_classes"
+        ],
+        "groups": [
+          {
+            "attribute_group_name": "General",
+            "sort_order": "1",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "link_text",
+                "sort_order": "1"
+              },
+              {
+                "attribute_code": "link_url",
+                "sort_order": "2"
+              },
+              {
+                "attribute_code": "target_blank",
+                "sort_order": "3"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Advanced",
+            "sort_order": "2",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "css_classes",
+                "sort_order": "1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "identifier": "buttons",
+      "name": "Buttons",
+      "content_type": "block",
+      "description": "Button list",
+      "url_key_prefix": null,
+      "preview_field": null,
+      "renderer": "core_default",
+      "item_view_template": "core_buttons",
+      "list_template": null,
+      "list_item_template": null,
+      "item_layout_update_xml": null,
+      "list_layout_update_xml": null,
+      "singular_name": "Buttons",
+      "plural_name": null,
+      "include_in_sitemap": "0",
+      "searchable": "0",
+      "icon_class": "fa fa-mouse-pointer",
+      "color": "#5284bd",
+      "show_in_page_builder": "1",
+      "sort_order": "0",
+      "group": "general",
+      "attribute_data": {
+        "attributes": [
+          "button_items",
+          "css_classes"
+        ],
+        "groups": [
+          {
+            "attribute_group_name": "General",
+            "sort_order": "1",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "button_items",
+                "sort_order": "2"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Advanced",
+            "sort_order": "2",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "css_classes",
+                "sort_order": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "identifier": "tabs",
+      "name": "Tabs",
+      "content_type": "block",
+      "description": "Tabs",
+      "url_key_prefix": null,
+      "preview_field": null,
+      "renderer": "core_default",
+      "item_view_template": "core_tabs",
+      "list_template": null,
+      "list_item_template": null,
+      "item_layout_update_xml": null,
+      "list_layout_update_xml": null,
+      "singular_name": "Tabs",
+      "plural_name": null,
+      "include_in_sitemap": "0",
+      "searchable": "0",
+      "icon_class": "fa fa-clone",
+      "color": "#779ecb",
+      "show_in_page_builder": "1",
+      "sort_order": "200",
+      "group": "other",
+      "attribute_data": {
+        "attributes": [
+          "tabs_items",
+          "css_classes"
+        ],
+        "groups": [
+          {
+            "attribute_group_name": "General",
+            "sort_order": "1",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "tabs_items",
+                "sort_order": "2"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Advanced",
+            "sort_order": "2",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "css_classes",
+                "sort_order": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "identifier": "advanced_slider",
+      "name": "Advanced Slider",
+      "content_type": "block",
+      "description": "Advanced Slider",
+      "url_key_prefix": null,
+      "preview_field": null,
+      "renderer": "core_default",
+      "item_view_template": "core_advanced_slider",
+      "list_template": null,
+      "list_item_template": null,
+      "item_layout_update_xml": null,
+      "list_layout_update_xml": null,
+      "singular_name": "Advanced Slider",
+      "plural_name": null,
+      "include_in_sitemap": "0",
+      "searchable": "0",
+      "icon_class": "fa fa-exchange",
+      "color": "blue",
+      "show_in_page_builder": "1",
+      "sort_order": "500",
+      "group": "media",
+      "attribute_data": {
+        "attributes": [
+          "advanced_slider_items",
+          "fade",
+          "autoplay",
+          "autoplay_speed",
+          "is_infinite",
+          "show_arrows",
+          "show_dots",
+          "slider_responsive_settings",
+          "css_classes"
+        ],
+        "groups": [
+          {
+            "attribute_group_name": "General",
+            "sort_order": "1",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "advanced_slider_items",
+                "sort_order": "1"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Settings",
+            "sort_order": "2",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "fade",
+                "sort_order": "1"
+              },
+              {
+                "attribute_code": "autoplay",
+                "sort_order": "2"
+              },
+              {
+                "attribute_code": "autoplay_speed",
+                "sort_order": "3"
+              },
+              {
+                "attribute_code": "is_infinite",
+                "sort_order": "4"
+              },
+              {
+                "attribute_code": "show_arrows",
+                "sort_order": "5"
+              },
+              {
+                "attribute_code": "show_dots",
+                "sort_order": "6"
+              },
+              {
+                "attribute_code": "slider_responsive_settings",
+                "sort_order": "7"
+              }
+            ]
+          },
+          {
+            "attribute_group_name": "Advanced",
+            "sort_order": "3",
+            "default_id": "0",
+            "attributes": [
+              {
+                "attribute_code": "css_classes",
+                "sort_order": "1"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "content_apps": [],
+  "attributes": []
+}

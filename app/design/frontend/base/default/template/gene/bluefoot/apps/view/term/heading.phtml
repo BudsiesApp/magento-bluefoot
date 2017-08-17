@@ -1,0 +1,25 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Content List Template
+ * @var $this Gene_BlueFoot_Block_App_Term_View
+ *
+ */
+
+$_term = $this->getCurrentTerm();
+
+?>
+
+<div class="page-title bluefoot-content-list-page-title">
+    <h1><?php echo $this->getPageTitle(); ?></h1>
+</div>
+
+<?php if ($_term->getShowDescription()) : ?>
+    <div class="page-description bluefoot-content-list-page-description">
+        <?php echo $this->getPageDescription(); ?>
+    </div>
+<?php endif; ?>

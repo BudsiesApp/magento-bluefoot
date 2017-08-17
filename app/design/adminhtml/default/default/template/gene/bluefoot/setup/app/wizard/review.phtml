@@ -1,0 +1,104 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_App_Wizard_Review
+ *
+ * @author Conor Farrell <conor@gene.co.uk>
+ */
+$stepData = $this->getReviewSteps();
+
+$taxonomy = $this->getTaxonomy();
+$contentType = $this->getContentType();
+$app = $this->getAppInfo();
+
+?>
+
+<form id="edit_form" action="<?php echo $this->getActionUrl(); ?>" method="post" enctype="multipart/form-data">
+    <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+    <div class="entry-edit full_width">
+
+        <?php if ($app) : ?>
+        <div class="fieldset " id="page_base_fieldset">
+            <div class="hor-scroll">
+                <div class="heading-col">
+                    <h3 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $this->__('App Info'); ?></h3>
+                    <button type="button" class="scalable" onclick="setLocation('<?php echo $this->getAppInfoUrl(); ?>'); return false; "><span><?php echo $this->__('Edit App Info'); ?></span></button>
+                </div>
+                <div class="info-col">
+                    <div class="gene-bluefoot-inner-info info-col-row">
+                        <strong>Title:</strong> <?php echo $app['title']; ?>
+                    </div>
+                    <div class="gene-bluefoot-inner-info info-col-row">
+                        <strong>Base URL:</strong> <?php echo $app['url_prefix']; ?>
+                    </div>
+                    <div class="gene-bluefoot-inner-info info-col-row">
+                        <strong>Description:</strong> <?php echo $app['description']; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+
+            <div class="fieldset " id="page_base_fieldset">
+                <div class="hor-scroll">
+                    <div class="heading-col">
+                        <h3 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $this->__('Content Types'); ?></h3>
+                        <button type="button" class="scalable" onclick="setLocation('<?php echo $this->getContentTypeUrl(); ?>'); return false; "><span><?php echo $this->__('Edit Content Types'); ?></span></button>
+                    </div>
+
+                    <div class="info-col">
+                        <?php if ($contentType) : ?>
+                            <?php foreach($contentType as $type) : ?>
+                                <?php foreach ($type as $data) : ?>
+                                    <div class="sub-item">
+                                        <h4 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $data['name']; ?></h4>
+                                        <div class="gene-bluefoot-inner-info info-col-row">
+                                            <strong>Base URL:</strong> <?php echo $data['identifier']; ?>
+                                        </div>
+                                        <div class="gene-bluefoot-inner-info info-col-row">
+                                            <strong>Description:</strong> <?php echo $data['description']; ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>No content types created</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="fieldset " id="page_base_fieldset">
+                <div class="hor-scroll">
+                    <div class="heading-col">
+                        <h3 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $this->__('Taxonomies'); ?></h3>
+                        <button type="button" class="scalable" onclick="setLocation('<?php echo $this->getTaxonomyUrl(); ?>'); return false; "><span><?php echo $this->__('Edit Taxonomies'); ?></span></button>
+                    </div>
+                    <div class="info-col">
+                        <?php if ($taxonomy) : ?>
+                            <?php foreach($taxonomy as $tax) : ?>
+                                <?php foreach ($tax as $taxData) : ?>
+                                    <div class="sub-item">
+                                        <h4 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $taxData['title']; ?></h4>
+                                        <div class="gene-bluefoot-inner-info info-col-row">
+                                            <strong>Nestable:</strong> <?php echo $taxData['is_nestable'] == 0 ? 'Yes' : 'No'; ?>
+                                        </div>
+                                        <div class="gene-bluefoot-inner-info info-col-row">
+                                            <strong>Term URL Prefix:</strong> <?php echo $taxData['term_url_prefix']; ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+
+                        <?php else: ?>
+                            <p>No taxonomies created</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</form>

@@ -1,0 +1,45 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_App_Wizard_Taxonomy
+ */
+
+?>
+<div class="entry-edit">
+    <?php echo $this->getFormHtml();?>
+</div>
+
+<div class="entry-edit">
+    <div class="fieldset">
+        <div class="hor-scroll">
+            <button type="button" onclick="appWizard.loadAdditional('<?php echo $this->getUrl('*/*/addTaxonomy'); ?>');">Create New Taxonomy</button>
+        </div>
+    </div>
+</div>
+
+
+<?php if($this->_hasNewTaxonomies()): ?>
+<div class="entry-edit">
+    <?php foreach($this->_getNewTaxonomies() as $identifier => $newTaxonomy): ?>
+        <?php $newTaxonomy = new Varien_Object($newTaxonomy); ?>
+        <div class="fieldset">
+            <div class="hor-scroll">
+
+                <div class="heading-col">
+                    <h3 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $newTaxonomy->getTitle() ?></h3>
+                    <button onclick="alert('Remove');">Remove</button>
+                </div>
+                <div class="info-col">
+                    <div class="gene-bluefoot-inner-info info-col-row">
+                        <strong>Nestable:</strong> <?php echo $newTaxonomy->getIsNestable() == 0 ? 'Yes' : 'No'; ?>
+                    </div>
+                    <div class="gene-bluefoot-inner-info info-col-row">
+                        <strong>Term URL Prefix:</strong> <?php echo $newTaxonomy->getTermUrlPrefix(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
+
+<?php echo $this->getChildHtml('form_after');?>

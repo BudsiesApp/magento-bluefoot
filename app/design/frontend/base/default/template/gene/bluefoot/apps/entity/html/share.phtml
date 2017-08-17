@@ -1,0 +1,23 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Share template
+ * Sharing widgets are powered by AddThis <https://www.addthis.com/>
+ * To use sharing widgets please enable them globally and add your unique AddThis ID (System -> Configuration -> BlueFoot -> Sharing)
+ *
+ * @var $this Gene_BlueFoot_Block_Entity_Content_View
+ *
+ */
+$_entity = $this->getEntity();
+$_addthisId = Mage::getStoreConfig('bluefoot_app/sharing/addthis_id');
+?>
+<?php if ($_entity->getEnableSharing() && $_addthisId): ?>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $_addthisId; ?>" async="async"></script>
+    <div class="bluefoot-content-view-share">
+        <div class="addthis_sharing_toolbox"></div>
+    </div>
+<?php endif; ?>

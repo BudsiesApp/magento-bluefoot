@@ -1,0 +1,59 @@
+<?php //if($this->getTitle()): ?>
+<!--    <div class="gene-bluefoot-sidebar-container active" style="opacity: 1;">-->
+<!--        <div class="gene-bluefoot-sidebar gene-bluefoot-stage-page_content">-->
+<!--             <div class="gene-bluefoot-sidebar-panel">-->
+<!--                <span class="bluefoot-logo">--><?php //echo $this->__('% CMS & PageBuilder', 'BlueFoot'); ?><!--</span>-->
+<?php //endif; ?>
+<!--                    --><?php //$i = 1; ?>
+<!--                    --><?php //$steps = $this->getSteps(); ?>
+<!--                    --><?php //if(count($steps)): ?>
+<!--                        <ul class="tabs bluefoot-wizard-tabs">-->
+<!--                        --><?php //foreach($steps as $step): ?>
+<!--                            <li>-->
+<!--                                --><?php //if ($step->getIsComplete()): ?>
+<!--                                    <span class="strike">--><?php //echo  $i . ' ' .$step->getTitle(); ?><!-- <img src="--><?php //echo $this->getSkinUrl('images/fam_bullet_success.gif'); ?><!--" alt="--><?php //echo $this->__('Tick Icon'); ?><!--" title="--><?php //echo $this->__('Step Complete'); ?><!--"/></span>-->
+<!--                                --><?php //elseif ($step->getIsCurrent()): ?>
+<!--                                    <span><strong>--><?php //echo  $i . ' ' .$step->getTitle(); ?><!-- </strong></span>-->
+<!--                                --><?php //else: ?>
+<!--                                    <span>--><?php //echo  $i . ' ' .$step->getTitle(); ?><!-- </span>-->
+<!--                                --><?php //endif; ?>
+<!--                            </li>-->
+<!--                            --><?php //$i++; ?>
+<!--                        --><?php //endforeach; ?>
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                <span class="gene-logo dark">--><?php //echo $this->__('Built by %s', '<a href="http://gene.co.uk" target="_blank" title="Gene Commerce">Gene</a>'); ?><!--</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<?php //endif; ?>
+
+<?php
+$steps = $this->getSteps();
+$i=1;
+?>
+<div class="content-header steps-header">
+    <div class="bluefoot-steps-progress">
+        <h3 id="wizard-step-title"><?php echo $this->__('App Wizard'); ?></h3>
+        <ul class="steps-progress">
+            <?php foreach($steps as $step): ?>
+                <?php if ($step->getIsComplete()): ?>
+                    <li class="step step-inactive">
+                        <span class="step-number"><?php echo $i; ?></span>
+                        <?php echo $this->__($step->getTitle()); ?>
+                    </li>
+                <?php elseif($step->getIsCurrent()): ?>
+                    <li class="step step-active">
+                        <span class="step-number"><?php echo $i; ?></span>
+                        <?php echo $this->__($step->getTitle()); ?>
+                    </li>
+                <?php else: ?>
+                    <li class="step">
+                        <span class="step-number"><?php echo $i; ?></span>
+                        <?php echo $this->__($step->getTitle()); ?>
+                    </li>
+                <?php endif; ?>
+                <?php $i++; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>

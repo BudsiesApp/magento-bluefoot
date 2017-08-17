@@ -1,0 +1,20 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Content view meta template
+ *
+ * @var $this Gene_BlueFoot_Block_Entity_Content_View
+ *
+ */
+$_entity = $this->getEntity();
+$_dateHelper = Mage::helper('gene_bluefoot/date');
+?>
+<?php if ($_date = $_entity->getPublishedDate()): ?>
+    <div class="bluefoot-content-meta">
+        <p class="bluefoot-published-date"><?php echo $this->__('Published %s', $_dateHelper->getFriendlyDateTime(strtotime($_date))); ?></p>
+    </div>
+<?php endif; ?>

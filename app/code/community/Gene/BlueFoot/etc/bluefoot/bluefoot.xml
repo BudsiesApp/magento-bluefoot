@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config>
+    <installer>
+        <bluefoot_blog>
+            <title>Blog</title>
+            <description><![CDATA[
+            Creates a basic blog with Categories, Authors and Tags
+            ]]></description>
+            <file>bluefoot/blog.json</file>
+            <module>Gene_BlueFoot</module>
+        </bluefoot_blog>
+    </installer>
+    <installer>
+        <bluefoot_pagebuiler_blocks_core>
+            <title>Core Pagebuilder Blocks</title>
+            <description><![CDATA[
+            Creates the core Pagebuilder blocks packaged with BlueFoot
+            ]]></description>
+            <file>bluefoot/pagebuilder_blocks_core.json</file>
+            <module>Gene_BlueFoot</module>
+            <setup_installer>1</setup_installer>
+        </bluefoot_pagebuiler_blocks_core>
+
+        <bluefoot_pagebuiler_blocks_core_part2>
+            <title>Core Pagebuilder Blocks 2</title>
+            <description><![CDATA[
+            Creates the additional core Pagebuilder blocks packaged with BlueFoot
+            ]]></description>
+            <file>bluefoot/pagebuilder_blocks_core_2.json</file>
+            <module>Gene_BlueFoot</module>
+            <setup_installer>1</setup_installer>
+        </bluefoot_pagebuiler_blocks_core_part2>
+
+    </installer>
+
+    <frontend>
+        <image_profiles>
+            <_default>
+                <width>750</width>
+                <height>450</height>
+                <adaptive_resize>center</adaptive_resize>
+                <keep_frame>0</keep_frame>
+                <keep_aspect_ratio>1</keep_aspect_ratio>
+                <keep_transparency>1</keep_transparency>
+                <constrain_only>0</constrain_only>
+            </_default>
+            <thumbnail>
+                <width>300</width>
+                <height>200</height>
+            </thumbnail>
+            <medium>
+                <width>860</width>
+                <height>450</height>
+            </medium>
+            <large>
+                <width>1400</width>
+                <height>750</height>
+            </large>
+        </image_profiles>
+    </frontend>
+</config>

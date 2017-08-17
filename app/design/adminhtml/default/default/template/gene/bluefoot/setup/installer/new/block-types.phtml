@@ -1,0 +1,100 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_Installer_Create_Tab_Block
+ *
+ * @author Conor Farrell <conor@gene.co.uk>
+ */
+
+$_blockDetails = $this->_getBlockDetails();
+$_blockAttributes = $this->_getBlockAttributes();
+
+?>
+<div class="grid">
+    <div class="hor-scroll">
+        <table id="bluefoot_cms_installer_grid_table">
+            <thead>
+                <tr class="headings">
+                    <th><span class="nobr"><a href="#" name="icon" title="asc" class="not-sort"><span class="sort-title"><?php echo $this->__('Icon'); ?></span></a></span></th>
+                    <th><span class="nobr"><a href="#" name="name" title="asc" class="not-sort"><span class="sort-title"><?php echo $this->__('Name'); ?></span></a></span></th>
+                    <th><span class="nobr"><a href="#" name="identifier" title="asc" class="not-sort"><span class="sort-title"><?php echo $this->__('Identifier'); ?></span></a></span></th>
+                    <th><span class="nobr"><a href="#" name="description" title="asc" class="not-sort"><span class="sort-title"><?php echo $this->__('Description'); ?></span></a></span></th>
+                    <th><span class="nobr"><a href="#" name="view" title="asc" class="not-sort"><span class="sort-title"><?php echo $this->__('View Associated Attributes'); ?></span></a></span></th>
+                    <th class=" last" width="100px" ><span class="nobr"  style="text-align: center;"><a href="#" name="select" title="asc" class="not-sort"><span class="sort-title" style="padding-right:0;"><?php echo $this->__('Export'); ?> ( Select all: <input type="checkbox" id="select-all-blocks" />)</span></a></span></th>
+                </tr>
+            </thead>
+            <?php $_i = 0; foreach($_blockDetails as $_blockDetail): $_i++; ?>
+                <?php $blockAttributes = $_blockDetail->getVisibleAttributes(); ?>
+                    <tr id="block-info-<?php echo $_blockDetail->getIdentifier(); ?>" data-block-detail="block-detail-<?php echo $_blockDetail->getIdentifier(); ?>"  title="http://bluefoot.conor.gene.co.uk/index.php/admin/genecms_setup_block/edit/id/1/key/ab72dbb374f136e3f69de9f4bb421e50/" class="<?php echo ($_i%2) ? 'odd' : 'even' ?> row-table-section pointer">
+                        <td class="a-center">
+                            <i style="font-size: 20px" class="fa <?php echo $_blockDetail->getIconClass(); ?>" style="<?php echo $_blockDetail->getIconStyle(); ?>"></i>
+                        </td>
+                        <td class="a-left">
+                            <?php echo $_blockDetail->getName(); ?>
+                        </td>
+                        <td class="a-left">
+                            <?php echo $_blockDetail->getIdentifier() ?>
+                        </td>
+                        <td class="a-left">
+                            <?php echo $_blockDetail->getDescription(); ?>
+                        </td>
+                        <td class="a-center">
+                            <a class="view-attributes"><?php echo $this->__('View Attributes'); ?></a>
+                        </td>
+                        <td class="a-center last">
+                            <input type="checkbox" name="export[blocks][]" value="<?php echo $_blockDetail->getIdentifier() ?>"/>
+                        </td>
+                    </tr>
+                    <tr id="block-detail-<?php echo $_blockDetail->getIdentifier(); ?>" class="table_body_section" style="display: none">
+                        <td colspan="6">
+                            <label class="full-width bluefoot-installer-attribute-code-title"><h3><?php echo $this->__('Attribute Codes'); ?></h3></label>
+                            <?php $i = 1 ?>
+                            <?php foreach($blockAttributes as $blockAttr): ?>
+                                <span class="bluefoot-installer-attribute-code full-width">
+                                    <?php echo $i++ . ': ' ?>
+                                    <?php echo $blockAttr->getFrontendLabel(); ?>
+                                    (<?php echo $blockAttr->getAttributeCode(); ?>)
+                                </span>
+                                <br/>
+                            <?php endforeach; ?>
+                        </td>
+                    </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+</div>
+<script>
+    $$('.view-attributes').each(function (elem){
+        Element.observe(elem, 'click',function(event){
+            var element = Event.element(event);
+            var tr = element.up('tr');
+            var detailElId = tr.readAttribute('data-block-detail');
+
+            if (tr.hasClassName('active')) {
+                tr.removeClassName('active');
+                $(detailElId).hide();
+            }else{
+                tr.addClassName('active');
+                $(detailElId).show();
+            }
+        });
+    });
+    $$('.row-table-section').each(function (elem){
+
+        elem.observe('mouseover', function() {
+            elem.addClassName('mouseover');
+        });
+
+        elem.observe('mouseout', function() {
+            elem.removeClassName('mouseover');
+        });
+    });
+    var checkboxes = $$("#bluefoot_cms_installer_grid_table input[type=checkbox]");
+    var cbControl = $("select-all-blocks");
+
+    cbControl.observe("click", function(){
+        checkboxes.each(function(box){
+            box.checked = cbControl.checked;
+        });
+    });
+</script>
+

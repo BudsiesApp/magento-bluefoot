@@ -1,0 +1,156 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Content List Template
+ * @var $this Gene_BlueFoot_Block_App_Term_View
+ *
+ */
+$_helper = Mage::helper('gene_bluefoot');
+$_dateHelper = Mage::helper('gene_bluefoot/date');
+$_imageHelper = Mage::helper('gene_bluefoot/image');
+$_currentTerm = $this->getCurrentTerm();
+$_terms = $this->getChildTerms($_currentTerm);
+?>
+
+<div class="bluefoot-content-list-content bluefoot-content-list-terms-with-content">
+
+
+    <?php if ($_terms->getSize()): ?>
+        <div class="bluefoot-content-list-terms-container">
+
+            <?php  $_j = 0; foreach ($_terms as $_term):  $_j++; ?>
+
+                <div class="bluefoot-content-list-type-item<?php echo ($_j == count($_terms)) ? ' last' : '' ;?>">
+
+                    <?php $_url = $this->getTermUrl($_term); ?>
+                    <?php $_entities = $this->getTermEntityCollection($_term); ?>
+
+
+                    <h3 class="bluefoot-content-item-title">
+                        <a href="<?php echo $_url; ?>"><?php echo $_term->getTitle(); ?></a>
+                    </h3>
+
+                    <?php if ($_term->getShowDescription() && $_term->getDescription()) : ?>
+                        <div class="page-description bluefoot-content-list-page-description">
+                            <p><?php echo $_term->getDescription(); ?></p>
+                        </div>
+                    <?php endif; ?>
+
+                    <div id="bluefoot-content-term-<?php echo $_term->getId(); ?>" class="bluefoot-content-term<?php echo ($this->getGridView()) ? ' bluefoot-row' : ''; ?>">
+
+                        <?php
+                        // Grid View
+                        if ($this->getGridView()): ?>
+                            <div class="bluefoot-content-list-items">
+                                <?php if($_entities && $_entities->getSize()): ?>
+
+                                    <?php $_i = 0; foreach($_entities as $_entity):  $_i++; ?>
+                                        <div id="bluefoot-content-grid-item-<?php echo $_entity->getId(); ?>" class="bluefoot-content-grid-item bluefoot-column bluefoot-column-4<?php echo ($_i % 3 == 0) ? ' last' : '' ;?>">
+
+                                            <div class="bluefoot-fixed-height-item">
+
+                                                <?php if ($_image = $_entity->getFeaturedImage()): ?>
+                                                    <a href="<?php echo $this->getEntityUrl($_entity); ?>" class="bluefoot-content-featured-image">
+                                                        <img src="<?php echo $_imageHelper->init($_image)->useConfig('thumbnail'); ?>" alt="<?php echo $_entity->getTitle(); ?>"/>
+                                                    </a>
+                                                <?php endif; ?>
+
+                                                <h4 class="bluefoot-content-item-title">
+                                                    <a href="<?php echo $this->getEntityUrl($_entity); ?>"><?php echo $_entity->getTitle(); ?></a>
+                                                </h4>
+
+                                                <?php if ($_date = $_entity->getPublishedDate()): ?>
+                                                    <div class="bluefoot-content-meta">
+                                                        <p class="bluefoot-published-date"><?php echo $this->__('Published %s', $_dateHelper->getFriendlyDateTime(strtotime($_date))); ?></p>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <?php if ($_excerpt = $_entity->getExcerpt()): ?>
+                                                    <div class="bluefoot-content-summary">
+                                                        <p><?php echo $_excerpt; ?></p>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                            </div>
+
+                                            <button type="button" onclick="location.href='<?php echo $this->getEntityUrl($_entity); ?>'" class="button bluefoot-read-more-link">
+                                                <span><span><?php echo $this->__('Continue Reading &raquo;'); ?></span></span>
+                                            </button>
+
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <div class="no-content bluefoot-no-content">
+                                        <p><?php echo $this->__('There isn\'t any content yet'); ?></p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                        <?php
+                        // List View
+                        else: ?>
+                            <div class="bluefoot-content-list-items">
+                                <?php if($_entities && $_entities->getSize()): ?>
+                                    <?php $_i = 0; foreach($_entities as $_entity): $_i++; ?>
+                                        <div id="bluefoot-content-list-item-<?php echo $_entity->getId(); ?>" class="bluefoot-content-list-item <?php echo ($_i == count($_entities)) ? ' last' : '' ;?>">
+
+                                            <?php if ($_image = $_entity->getFeaturedImage()): ?>
+                                                <a href="<?php echo $this->getEntityUrl($_entity); ?>" class="bluefoot-content-featured-image">
+                                                    <img src="<?php echo $_imageHelper->init($_image)->useConfig('medium'); ?>" alt="<?php echo $_entity->getTitle(); ?>"/>
+                                                </a>
+                                            <?php endif; ?>
+
+                                            <h4 class="bluefoot-content-item-title">
+                                                <a href="<?php echo $this->getEntityUrl($_entity); ?>"><?php echo $_entity->getTitle(); ?></a>
+                                            </h4>
+
+                                            <?php if ($_date = $_entity->getPublishedDate()): ?>
+                                                <div class="bluefoot-content-meta">
+                                                    <p class="bluefoot-published-date"><?php echo $this->__('Published %s', $_dateHelper->getFriendlyDateTime(strtotime($_date))); ?></p>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if ($_excerpt = $_entity->getExcerpt()): ?>
+                                                <div class="bluefoot-content-summary">
+                                                    <p><?php echo $_excerpt; ?></p>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <button type="button" onclick="location.href='<?php echo $this->getEntityUrl($_entity); ?>'" class="button bluefoot-read-more-link">
+                                                <span><span><?php echo $this->__('Continue Reading &raquo;'); ?></span></span>
+                                            </button>
+
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <div class="no-content bluefoot-no-content">
+                                        <p><?php echo $this->__('There isn\'t any content yet'); ?></p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <script type="text/javascript">
+            jQuery(function(){
+                jQuery('.bluefoot-content-list-content').bluefootNormaliseHeights({
+                    block: '.bluefoot-fixed-height-item'
+                });
+            });
+        </script>
+    <?php else: ?>
+
+        <div class="no-content bluefoot-no-content">
+            <p><?php echo $this->__('There isn\'t any content yet'); ?></p>
+        </div>
+
+    <?php endif; ?>
+</div>

@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+
+<config>
+    <tabs>
+        <gene translate="label">
+            <label>Gene Commerce</label>
+            <sort_order>100</sort_order>
+        </gene>
+    </tabs>
+    <sections>
+        <bluefoot translate="label" module="core">
+            <label>BlueFoot</label>
+            <tab>gene</tab>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <version translate="label" module="core">
+                    <label>BlueFoot</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+                        <module_version translate="label">
+                            <label>BlueFoot Version</label>
+                            <frontend_model>gene_bluefoot/adminhtml_system_config_version</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </module_version>
+
+                    </fields>
+                </version>
+                <developer translate="label" module="core">
+                    <label>Developer</label>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!-- Include jQuery -->
+                        <include_jquery translate="label comment">
+                            <label>Include jQuery</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </include_jquery>
+
+                        <!-- Include Google Maps JS -->
+                        <include_google_maps translate="label comment">
+                            <label>Include Maps JS</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </include_google_maps>
+
+                        <!-- Google Maps API Key -->
+                        <google_maps_api translate="label comment">
+                            <label>Google Maps API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Get your API key here - https://developers.google.com/maps/documentation/javascript/get-api-key</comment>
+                        </google_maps_api>
+
+                    </fields>
+                </developer>
+            </groups>
+        </bluefoot>
+
+        <bluefoot_app translate="label" module="core">
+            <label>BlueFoot Apps</label>
+            <tab>gene</tab>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <taxonomies translate="label" module="core">
+                    <label>Taxonomies</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!-- Show Latest -->
+                        <prefix_titles translate="label comment">
+                            <label>Prefix taxonomy title</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Do you want taxonomy titles to be prefixed with the taxonomy name</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </prefix_titles>
+                    </fields>
+                </taxonomies>
+
+                <sidebar translate="label" module="core">
+                    <label>Sidebar</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!-- Show Latest -->
+                        <show_latest translate="label comment">
+                            <label>Show Latest Entities</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </show_latest>
+
+                        <!-- Latest count -->
+                        <latest_count translate="label comment">
+                            <label>Latest Entities to Show</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </latest_count>
+
+                        <!-- Show Dates -->
+                        <show_dates translate="label comment">
+                            <label>Show Dates On Latest Entities</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </show_dates>
+
+                        <!-- Show Taxonomies -->
+                        <show_taxonomies translate="label comment">
+                            <label>Show Taxonomy Navigation</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </show_taxonomies>
+
+                        <!-- Taxonomy Depth -->
+                        <taxonomy_depth translate="label comment">
+                            <label>Category Depth</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>How many levels of taxonomies do you want to appear in the sidebar</comment>
+                        </taxonomy_depth>
+
+
+
+                    </fields>
+                </sidebar>
+
+                <sharing translate="label" module="core">
+                    <label>Sharing</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+                        <!-- Enable Sharing -->
+                        <enable_sharing translate="label comment">
+                            <label>Enable sharing widgets</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enable_sharing>
+
+                        <!-- Add this -->
+                        <addthis_id translate="label comment">
+                            <label>AddThis ID</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Please create an <a href="https://www.addthis.com/" target="_blank">AddThis</a> account to enable sharing widgets]]></comment>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </addthis_id>
+                    </fields>
+                </sharing>
+
+                <comments translate="label" module="core">
+                    <label>Comments</label>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+                        <!-- Enable Comments -->
+                        <enable_comments translate="label comment">
+                            <label>Enable comments</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enable_comments>
+
+                        <!-- Disqus -->
+                        <disqus_url translate="label comment">
+                            <label>Disqus URL</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Please create a <a href="https://disqus.com/" target="_blank">Disqus</a> account to enable comments. e.g. bluefootcms.disqus.com/embed.js]]></comment>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disqus_url>
+                    </fields>
+                </comments>
+            </groups>
+        </bluefoot_app>
+    </sections>
+</config>

@@ -1,0 +1,104 @@
+<style type="text/css">
+    .gene-bluefoot-info-row {
+        padding:0 0 5px 0;
+    }
+
+    .content-app-info{
+        overflow: auto;
+    }
+
+    .content-app-info .heading-col{
+        width:200px;
+        padding: 0 20px 0 0;
+        float:left;
+
+    }
+
+    .content-app-info .info-col{
+        width: 250px;
+        padding: 0 20px 0 0;
+        float:left;
+    }
+    .content-app-info .info-col-right{
+        padding: 0 0 0 20px;
+        float:right;
+    }
+
+    .content-app-info input.checkbox{
+        margin:0 10px 0 0;
+    }
+
+</style>
+
+<?php
+$apps = $this->getContentApps();
+?>
+
+<?php if($apps && count($apps)): ?>
+    <?php foreach($apps as $app): ?>
+
+        <?php
+        /**
+         * @var $app Gene_BlueFoot_Model_App
+         */
+        $contentTypes = $app->getContentTypes();
+
+        $taxonomies = $app->getTaxonomies();
+        ?>
+
+        <div class="entry-edit">
+            <div class="fieldset fieldset-wide">
+                <div class="hor-scroll">
+                    <div class="content-app-info">
+                        <div class="heading-col">
+                            <h3 class="icon-head head-edit-form fieldset-legend"><?php echo $app->getTitle() ?></h3>
+                            <div class="gene-bluefoot-info-row">
+                                <strong>Base URL: </strong><?php echo $app->getUrlPrefix(); ?>
+                            </div>
+                            <div class="gene-bluefoot-info-row">
+                                <strong>Description: </strong><?php echo $app->getInternalDescription() ? $app->getInternalDescription() : '(None Set)'; ?>
+                            </div>
+                        </div>
+                        <div class="info-col">
+                            <h4>Content Types</h4>
+                            <?php if($contentTypes && count($contentTypes)):  ?>
+                                <ul>
+                                <?php foreach($contentTypes as $contentType): ?>
+                                    <li><?php echo $contentType->getName(); ?> [<?php echo $contentType->getIdentifier() ?>]</li>
+                                <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                <p>No Content types exist for this app</p>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="info-col">
+                            <h4>Taxonomies</h4>
+                            <?php if($taxonomies && count($taxonomies)):  ?>
+                                <ul>
+                                    <?php foreach($taxonomies as $taxonomy): ?>
+                                        <li><?php echo $taxonomy->getTitle(); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                <p>No taxonomies exist for this app</p>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="info-col-right">
+                            <input class="checkbox" id="export_checkbox_<?php echo $app->getId() ?>" name="export[apps][]" value="<?php echo $app->getId(); ?>" type="checkbox"><label for="export_checkbox_<?php echo $app->getId() ?>">Export</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <div class="entry-edit">
+        <div class="fieldset fieldset-wide">
+            <div class="hor-scroll">
+                <p>No Content Apps currently exist</p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

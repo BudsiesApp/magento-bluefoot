@@ -1,0 +1,246 @@
+<script type="text/javascript">
+//<![CDATA[
+function saveAndContinueEdit(){
+    disableElements('save');
+    var activeTab = product_attribute_tabsJsTabs.activeTab.id;
+    if (editForm.submit($('edit_form').action+'back/edit/tab/' + activeTab) == false) {
+        enableElements('save');
+    }
+    varienGlobalEvents.attachEventHandler('formValidateAjaxComplete', function (){
+        enableElements('save');
+    });
+}
+
+function saveAttribute(){
+    disableElements('save');
+    if (editForm.submit() == false){
+        enableElements('save');
+    }
+    varienGlobalEvents.attachEventHandler('formValidateAjaxComplete', function (){
+        enableElements('save');
+    });
+}
+
+function checkOptionsPanelVisibility(){
+    if($('matage-options-panel')){
+        var panel = $('matage-options-panel');
+        if($('frontend_input') && ($('frontend_input').value=='select' || $('frontend_input').value=='multiselect')){
+            panel.show();
+        }
+        else {
+            panel.hide();
+        }
+    }
+}
+
+function bindAttributeInputType()
+{
+    checkOptionsPanelVisibility();
+    switchDefaultValueField();
+    checkIsConfigurableVisibility();
+    if($('frontend_input') && ($('frontend_input').value=='select' || $('frontend_input').value=='multiselect' || $('frontend_input').value=='price')){
+        if($('backend_type') && $('backend_type').options){
+            for(var i=0;i<$('backend_type').options.length;i++){
+                if($('backend_type').options[i].value=='int') $('backend_type').selectedIndex = i;
+            }
+        }
+    }
+    else {
+
+    }
+
+    if ($('frontend_input') && ($('frontend_input').value=='multiselect'
+        || $('frontend_input').value=='gallery'
+        || $('frontend_input').value=='textarea')) {
+    }
+    else {
+
+    }
+
+    setRowVisibility('is_wysiwyg_enabled', false);
+
+    switch ($('frontend_input').value) {
+        case 'textarea':
+            setRowVisibility('is_wysiwyg_enabled', true);
+            $('frontend_class').value = '';
+            $('frontend_class').disabled = true;
+            break;
+        case 'text':
+
+            if (!$('frontend_class').getAttribute('readonly')) {
+                $('frontend_class').disabled = false;
+            }
+            break;
+        case 'select':
+        case 'multiselect':
+            break;
+        default:
+            $('frontend_class').value = '';
+            $('frontend_class').disabled = true;
+    }
+
+}
+
+
+
+function switchDefaultValueField()
+{
+    if (!$('frontend_input')) {
+        return;
+    }
+
+    var currentValue = $('frontend_input').value;
+    var widgetValue = $('widget').value;
+
+    var defaultValueTextVisibility = false;
+    var defaultValueTextareaVisibility = false;
+    var defaultValueDateVisibility = false;
+    var defaultValueYesnoVisibility = false;
+    var scopeVisibility = true;
+    var defaultEntityContentFilterVisibility = false;
+    var defaultEntityBlockFilterVisibility = false;
+
+    setRowVisibility('is_wysiwyg_enabled', false);
+
+    switch (currentValue) {
+        case 'select':
+            optionDefaultInputType = 'radio';
+            break;
+
+        case 'multiselect':
+            optionDefaultInputType = 'checkbox';
+            break;
+
+        case 'date':
+            defaultValueDateVisibility = true;
+            break;
+
+        case 'boolean':
+            defaultValueYesnoVisibility = true;
+            break;
+
+        case 'textarea':
+            defaultValueTextareaVisibility = true;
+            break;
+
+        case 'media_image':
+            defaultValueTextVisibility = false;
+            break;
+
+        case 'image':
+            defaultValueTextVisibility = false;
+            break;
+
+        case 'media_gallery':
+            defaultValueTextVisibility = false;
+            break;
+
+        case 'entity_list':
+            defaultEntityContentFilterVisibility = true;
+            break;
+
+        case 'child_entity':
+            defaultEntityBlockFilterVisibility = true;
+            defaultValueTextVisibility = true;
+            break;
+
+
+        default:
+            defaultValueTextVisibility = true;
+            break;
+    }
+
+    // Set the input type visibility based on the widget value
+    setRowVisibility('frontend_input', !(widgetValue != ''));
+
+    setRowVisibility('default_value_text', defaultValueTextVisibility);
+    setRowVisibility('default_value_textarea', defaultValueTextareaVisibility);
+    setRowVisibility('default_value_date', defaultValueDateVisibility);
+    setRowVisibility('default_value_yesno', defaultValueYesnoVisibility);
+
+    setRowVisibility('entity_allowed_block_type', defaultEntityBlockFilterVisibility);
+    setRowVisibility('entity_allowed_content_types', defaultEntityContentFilterVisibility);
+
+    switch (currentValue) {
+        case 'media_image':
+        case 'image':
+
+            setRowVisibility('is_required', false);
+            setRowVisibility('is_unique', false);
+            setRowVisibility('frontend_class', false);
+            setRowVisibility('default_value_text', false);
+            //setRowVisibility('ecms_allowed_types', false);
+            break;
+
+        case 'entity_list':
+        case 'child_entity':
+            setRowVisibility('frontend_class', false);
+            setRowVisibility('is_unique', true);
+            setRowVisibility('entity_allowed_block_type', true);
+            break;
+
+        case 'select':
+        case 'multiselect':
+            setRowVisibility('frontend_class', false);
+            break;
+
+        default:
+            setRowVisibility('is_required', true);
+            setRowVisibility('is_unique', true);
+            setRowVisibility('frontend_class', true);
+            //setRowVisibility('ecms_allowed_types', false);
+            break;
+    }
+
+    var elems = document.getElementsByName('default[]');
+    for (var i = 0; i < elems.length; i++) {
+        elems[i].type = optionDefaultInputType;
+    }
+}
+
+function setRowVisibility(id, isVisible)
+{
+    if ($(id)) {
+        var td = $(id).parentNode;
+        var tr = $(td.parentNode);
+
+        if (isVisible) {
+            tr.show();
+        } else {
+            tr.blur();
+            tr.hide();
+        }
+    }
+}
+
+function checkIsConfigurableVisibility()
+{
+    if (!$('frontend_input')) return;
+}
+
+function updateRequriedOptions()
+{
+    if ($F('frontend_input')=='select' && $F('is_required')==1) {
+        $('option-count-check').addClassName('required-options-count');
+    } else {
+        $('option-count-check').removeClassName('required-options-count');
+    }
+}
+
+if($('frontend_input')){
+    Event.observe($('frontend_input'), 'change', updateRequriedOptions);
+    Event.observe($('frontend_input'), 'change', bindAttributeInputType);
+}
+
+// Bind events to show and hide options for widgets
+if($('widget')) {
+    Event.observe($('widget'), 'change', updateRequriedOptions);
+    Event.observe($('widget'), 'change', bindAttributeInputType);
+}
+
+if ($('is_required')) {
+    Event.observe($('is_required'), 'change', updateRequriedOptions);
+}
+bindAttributeInputType();
+//]]>
+</script>

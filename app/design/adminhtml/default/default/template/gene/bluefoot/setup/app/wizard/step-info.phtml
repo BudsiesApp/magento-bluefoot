@@ -1,0 +1,10 @@
+<?php  if($this->getUserInfo()): ?>
+    <div id="step-info-inner">
+        <div class="app-step-user-icon">
+            <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="app-step-user-info">
+            <?php echo $this->getUserInfo(); ?>
+        </div>
+    </div>
+<?php endif;

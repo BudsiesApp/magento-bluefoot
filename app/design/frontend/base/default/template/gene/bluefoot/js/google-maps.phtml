@@ -1,0 +1,16 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Google Maps JS
+ *
+ * @var $this Mage_Core_Block_Template
+ */
+$_apiKey = Mage::getStoreConfig('bluefoot/developer/google_maps_api');
+?>
+<?php if (Mage::getStoreConfig('bluefoot/developer/include_google_maps')): ?>
+    <script type="text/javascript" src="//maps.google.com/maps/api/js<?php echo ($_apiKey) ? '?key=' . $_apiKey : '' ; ?>"></script>
+<?php endif; ?>

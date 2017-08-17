@@ -1,0 +1,51 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author
+ *
+ * Content List Template
+ * @var $this Gene_BlueFoot_Block_App_Term_View
+ *
+ */
+$_helper = Mage::helper('gene_bluefoot');
+$_dateHelper = Mage::helper('gene_bluefoot/date');
+$_currentTerm = $this->getCurrentTerm();
+$_terms = $this->getChildTerms($_currentTerm);
+?>
+
+<div class="bluefoot-content-list-content bluefoot-content-list-terms-no-content">
+
+
+    <?php if ($_terms->getSize()): ?>
+        <div class="bluefoot-content-list-terms-container">
+
+            <?php $_j = 0; foreach ($_terms as $_term): $_j++; ?>
+
+                <div class="bluefoot-content-list-type-item<?php echo ($_j == count($_terms)) ? ' last' : '' ;?>">
+                    <?php $_url = $this->getTermUrl($_term); ?>
+                    <?php $_entities = $this->getTermEntityCollection($_term); ?>
+
+
+                    <h3 class="bluefoot-content-item-title">
+                        <a href="<?php echo $_url; ?>"><?php echo $_term->getTitle(); ?></a>
+                    </h3>
+
+                    <?php if ($_term->getShowDescription() && $_term->getDescription()) : ?>
+                        <div class="page-description bluefoot-content-list-page-description">
+                            <p><?php echo $_term->getDescription(); ?></p>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+    <?php else: ?>
+
+        <div class="no-content bluefoot-no-content">
+            <p><?php echo $this->__('There isn\'t any content yet'); ?></p>
+        </div>
+
+    <?php endif; ?>
+</div>

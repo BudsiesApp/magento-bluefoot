@@ -1,0 +1,133 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Entity_Edit_Tab_Taxonomy
+ */
+$taxonomy = $this->getTaxonomy();
+$hiddenFieldId = 'content_terms_' . $taxonomy->getId();
+$entityTermIds = $this->getEntityTermIds();
+$currentEntity = $this->getCurrentEntity();
+$taxonomyTermIds = $taxonomy->getTermIds();
+if(is_array($taxonomyTermIds)){
+    $entityTermIds = array_intersect($entityTermIds, $taxonomyTermIds);
+}else{
+    $entityTermIds = array();
+}
+$idString = implode(',', $entityTermIds);
+
+?>
+<style type="text/css">
+    .quickterm-toggle{width:18px;}
+</style>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('gene_bluefoot')->__($taxonomy->getTitle() . ' Terms') ?></h4>
+    </div>
+    <fieldset>
+        <input type="hidden" name="taxonomy_terms[<?php echo $taxonomy->getId(); ?>]" id="<?php echo $hiddenFieldId; ?>" value="<?php echo $idString ?>">
+        <?php if($taxonomy && $taxonomy->getTermIds() && count($taxonomy->getTermIds())): ?>
+            <div id="content-terms-tree-<?php echo $taxonomy->getId(); ?>" class="tree"></div>
+        <?php else: ?>
+            <div class="hor-scroll">
+                <p>No <?php echo $taxonomy->getTitle() ?> Terms currently exist.</p>
+            </div>
+        <?php endif; ?>
+
+    </fieldset>
+</div>
+<div id="add-term-container-<?php echo $taxonomy->getId(); ?>">
+    <button id="" title="Add Term" type="button" class="scalable add" onclick="addNewTaxonomyTerm(<?php echo $taxonomy->getId(); ?>, '<?php echo $this->getUrl('*/genecms_taxonomyterm/quickAdd', array('entity_id' => $currentEntity->getId())); ?>');" style=""><span><span><span>Add <?php echo $taxonomy->getTitle() ?> Term</span></span></span></button>
+    <div id="add-term-form-<?php echo $taxonomy->getId(); ?>">
+
+    </div>
+</div>
+<?php if($taxonomy && $taxonomy->getTermIds() && count($taxonomy->getTermIds())): ?>
+    <script type="text/javascript">
+
+        (function() {
+
+            Ext.EventManager.onDocumentReady(function () {
+
+                var tree = new Ext.tree.TreePanel('content-terms-tree-<?php echo $taxonomy->getId(); ?>', {
+                    animate: true,
+                    enableDD: false,
+                    containerScroll: true,
+                    rootUIProvider: Ext.tree.CheckboxNodeUI,
+                    selModel: new Ext.tree.CheckNodeMultiSelectionModel(),
+                    rootVisible: false
+                });
+
+                tree.on('check', function (node) {
+                    if (node.attributes.checked) {
+                        categoryAdd(node.id);
+                    } else {
+                        categoryRemove(node.id);
+                    }
+                    varienElementMethods.setHasChanges(node.getUI().checkbox);
+                }, tree);
+
+                // set the root node
+                var root = new Ext.tree.TreeNode({
+                    text: 'root',
+                    draggable: false,
+                    id: '<?php echo uniqid(); ?>'
+                });
+
+                tree.setRootNode(root);
+
+                bildCategoryTree(root, <?php echo $this->getTreeJson() ?>);
+                tree.addListener('click', categoryClick.createDelegate(this));
+
+                // render the tree
+                tree.render();
+                root.expand();
+                //tree.expandAll();
+            });
+
+            function bildCategoryTree(parent, config) {
+                if (!config) return null;
+
+                if (parent && config && config.length) {
+                    for (var i = 0; i < config.length; i++) {
+                        config[i].uiProvider = Ext.tree.CheckboxNodeUI;
+                        var node;
+                        var _node = Object.clone(config[i]);
+                        node = new Ext.tree.TreeNode(config[i]);
+                        parent.appendChild(node);
+                        node.loader = node.getOwnerTree().loader;
+                        if (config[i].children) {
+                            bildCategoryTree(node, config[i].children);
+                        }
+                    }
+                }
+            }
+
+            function categoryClick(node, e) {
+                console.log('click');
+                if (node.disabled) {
+                    return;
+                }
+                node.getUI().check(!node.getUI().checked());
+                varienElementMethods.setHasChanges(Event.element(e), e);
+            };
+            function categoryAdd(id) {
+                console.log('category add');
+                var ids = $('<?php echo $hiddenFieldId; ?>').value.split(',');
+                ids.push(id);
+                $('<?php echo $hiddenFieldId; ?>').value = ids.join(',');
+            }
+
+            function categoryRemove(id) {
+                console.log('category remove');
+                var ids = $('<?php echo $hiddenFieldId; ?>').value.split(',');
+                // bug #7654 fixed
+                while (-1 != ids.indexOf(id)) {
+                    ids.splice(ids.indexOf(id), 1);
+                }
+                $('<?php echo $hiddenFieldId; ?>').value = ids.join(',');
+            }
+        })();
+
+
+
+    </script>
+<?php endif; ?>

@@ -1,0 +1,50 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Chloe Langford <chloe@gene.co.uk>
+ *
+ * Latest App Entities Template
+ * @var $this Gene_BlueFoot_Block_App_View
+ *
+ */
+$count = Mage::getStoreConfig('bluefoot_app/sidebar/latest_count');
+$_entities = $this->getEntityCollection(null, $count);
+$_app = $this->getCurrentApp();
+
+$_helper = Mage::helper('gene_bluefoot');
+$_dateHelper = Mage::helper('gene_bluefoot/date');
+?>
+
+<?php if ($_entities->getSize() && Mage::getStoreConfig('bluefoot_app/sidebar/show_latest')): ?>
+<div class="bluefoot-content-view-latest block">
+    <div class="block-title">
+        <strong>
+            <span><?php echo $this->getLatestTitle(); ?></span>
+        </strong>
+    </div>
+    <ul id="bluefoot-sidebar-latest-posts" class="bluefoot-content-latest-items">
+        <?php $_i = 0; foreach ($_entities as $_entity): $_i++; ?>
+            <?php $_url = $_entity->getEntityUrl(); ?>
+
+            <li id="bluefoot-content-list-item-<?php echo $_entity->getId(); ?>" class="bluefoot-content-latest-item<?php echo ($_i == count($_entities)) ? ' last' : '' ?>">
+
+                <strong class="bluefoot-latest-title"><a href="<?php echo $_url; ?>"><?php echo $_entity->getTitle(); ?></a></strong>
+
+                <?php if ($_entity->getPublishedDate() && Mage::getStoreConfig('bluefoot_app/sidebar/show_dates')): ?>
+                    <?php $_date = strtotime($_entity->getPublishedDate()); ?>
+                    <p class="bluefoot-published-date"><?php echo $this->__('Published %s', $_dateHelper->getFriendlyDateTime($_date)); ?></p>
+                <?php endif ;?>
+
+                <?php if ($_entity->getExcerpt()): ?>
+                    <p class="bluefoot-excerpt"><?php echo $_entity->getExcerpt(); ?></p>
+                <?php endif ;?>
+
+            </li>
+
+        <?php endforeach; ?>
+        <script type="text/javascript">decorateList('bluefoot-sidebar-latest-posts');</script>
+    </ul>
+</div>
+<?php endif ;?>

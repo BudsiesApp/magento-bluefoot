@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gene_BlueFoot>
+            <version>1.1.1</version>
+        </Gene_BlueFoot>
+    </modules>
+    <global>
+        <models>
+            <gene_bluefoot>
+                <class>Gene_BlueFoot_Model</class>
+                <resourceModel>gene_bluefoot_resource</resourceModel>
+            </gene_bluefoot>
+
+            <gene_bluefoot_resource>
+                <class>Gene_BlueFoot_Model_Resource</class>
+                <entities>
+                    <entity>
+                        <table>gene_bluefoot_entity</table>
+                    </entity>
+                    <type>
+                        <table>gene_bluefoot_entity_type</table>
+                    </type>
+                    <type_group>
+                        <table>gene_bluefoot_entity_type_group</table>
+                    </type_group>
+                    <eav_attribute>
+                        <table>gene_bluefoot_eav_attribute</table>
+                    </eav_attribute>
+                    <install>
+                        <table>gene_bluefoot_install</table>
+                    </install>
+                    <taxonomy>
+                        <table>gene_bluefoot_taxonomy</table>
+                    </taxonomy>
+                    <taxonomy_term>
+                        <table>gene_bluefoot_taxonomy_term</table>
+                    </taxonomy_term>
+                    <taxonomy_term_content>
+                        <table>gene_bluefoot_taxonomy_term_content</table>
+                    </taxonomy_term_content>
+                    <content_app>
+                        <table>gene_bluefoot_app</table>
+                    </content_app>
+                    <content_app_content_type>
+                        <table>gene_bluefoot_app_content_type</table>
+                    </content_app_content_type>
+                    <content_app_taxonomy>
+                        <table>gene_bluefoot_app_taxonomy</table>
+                    </content_app_taxonomy>
+                    <url_rewrite>
+                        <table>gene_bluefoot_url_rewrite</table>
+                    </url_rewrite>
+                    <stage_template>
+                        <table>gene_bluefoot_stage_template</table>
+                    </stage_template>
+                </entities>
+            </gene_bluefoot_resource>
+
+            <sitemap>
+                <rewrite>
+                    <sitemap>Gene_BlueFoot_Model_Rewrite_Sitemap</sitemap>
+                </rewrite>
+            </sitemap>
+
+        </models>
+
+        <blocks>
+            <gene_bluefoot>
+                <class>Gene_BlueFoot_Block</class>
+            </gene_bluefoot>
+
+            <!-- Override the catalog helper form WYSIWYG to implement our "Use Gene CMS" button -->
+            <adminhtml>
+                <rewrite>
+                    <catalog_helper_form_wysiwyg>Gene_BlueFoot_Block_Adminhtml_Stage_Form_Element_Wysiwyg</catalog_helper_form_wysiwyg>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <helpers>
+            <gene_bluefoot>
+                <class>Gene_BlueFoot_Helper</class>
+            </gene_bluefoot>
+        </helpers>
+
+        <resources>
+            <gene_bluefoot_setup>
+                <setup>
+                    <module>Gene_BlueFoot</module>
+                    <class>Gene_BlueFoot_Model_Resource_Setup</class>
+                </setup>
+            </gene_bluefoot_setup>
+        </resources>
+
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <gene_bluefoot>
+                        <class>Gene_BlueFoot_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </gene_bluefoot>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+
+        <cache>
+            <types>           
+                <gene_bluefoot_config module="gene_bluefoot" translate="label description">             
+                    <label>BlueFoot Config</label>
+                    <description>Config for the BlueFoot</description>
+                    <tags>GENECMS_CONFIG</tags>
+                </gene_bluefoot_config>
+                <gene_block_cache module="gene_bluefoot" translate="label description">             
+                    <label>BlueFoot Block Cache</label>
+                    <description>Individual block caching for the BlueFoot</description>
+                    <tags>GENECMS_BLOCK_CACHE</tags>
+                </gene_block_cache>
+            </types>
+        </cache>
+
+        <index>
+            <indexer>
+                <gene_bluefoot_url_indexer>
+                    <model>gene_bluefoot/indexer</model>
+                </gene_bluefoot_url_indexer>
+            </indexer>
+        </index>
+
+        <page>
+            <layouts>
+                <gene_bluefoot_full_width module="page" translate="label">
+                    <label>BlueFoot Full Width Template</label>
+                    <template>gene/bluefoot/page/full-width.phtml</template>
+                    <layout_handle>gene_bluefoot_full_width</layout_handle>
+                </gene_bluefoot_full_width>
+            </layouts>
+        </page>
+
+    </global>
+
+    <frontend>
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <gene_bluefoot_core_block_to_html_before>
+                        <type>singleton</type>
+                        <class>gene_bluefoot/stage_observer</class>
+                        <method>toHtmlBefore</method>
+                    </gene_bluefoot_core_block_to_html_before>
+                </observers>
+            </core_block_abstract_to_html_before>
+            <controller_front_send_response_before>
+                <observers>
+                    <gene_bluefoot_page_renderer>
+                        <type>singleton</type>
+                        <class>gene_bluefoot/stage_observer</class>
+                        <method>renderFrontend</method>
+                    </gene_bluefoot_page_renderer>
+                </observers>
+            </controller_front_send_response_before>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <gene_bluefoot_menu>
+                        <class>gene_bluefoot/observer_menu</class>
+                        <method>addDynamicMenuItems</method>
+                    </gene_bluefoot_menu>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
+
+        <layout>
+            <updates>
+                <gene_bluefoot>
+                    <file>gene/bluefoot.xml</file>
+                </gene_bluefoot>
+                <gene_bluefoot_rwd>
+                    <file>gene/bluefoot-rwd.xml</file>
+                </gene_bluefoot_rwd>
+            </updates>
+        </layout>
+
+        <routers>
+            <genecms>
+                <use>standard</use>
+                <args>
+                    <module>Gene_BlueFoot</module>
+                    <frontName>genecms</frontName>
+                </args>
+            </genecms>
+            <bluefoot>
+                <use>standard</use>
+                <args>
+                    <module>Gene_BlueFoot</module>
+                    <frontName>bluefoot</frontName>
+                </args>
+            </bluefoot>
+        </routers>
+
+        <translate>
+            <modules>
+                <genecms>
+                    <files>
+                        <default>Gene_Bluefoot.csv</default>
+                    </files>
+                </genecms>
+            </modules>
+        </translate>
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <gene_bluefoot before="Mage_Adminhtml">Gene_BlueFoot_Adminhtml</gene_bluefoot>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+
+        <events>
+            <!-- Register an auto loader to allow us to override classes not called through factory methods to implement our "Use Gene CMS" button -->
+            <controller_action_predispatch>
+                <observers>
+                    <gene_bluefoot_override>
+                        <type>singleton</type>
+                        <class>gene_bluefoot/stage_observer</class>
+                        <method>registerAutoLoader</method>
+                    </gene_bluefoot_override>
+                    <gene_bluefoot_save_structure>
+                        <type>singleton</type>
+                        <class>gene_bluefoot/stage_observer</class>
+                        <method>adminhtmlSaveStructure</method>
+                    </gene_bluefoot_save_structure>
+                </observers>
+            </controller_action_predispatch>
+
+            <!-- Add in widget config data -->
+            <gene_bluefoot_stage_build_config>
+                <observers>
+                    <gene_bluefoot_widget_upload>
+                        <type>singleton</type>
+                        <class>gene_bluefoot/stage_widget_observer</class>
+                        <method>stageBuildConfig</method>
+                    </gene_bluefoot_widget_upload>
+                </observers>
+            </gene_bluefoot_stage_build_config>
+
+            <!-- Dynamic Menu build -->
+            <adminhtml_block_html_before>
+                <observers>
+                    <genecms_build_menu>
+                        <type>singleton</type>
+                        <class>gene_bluefoot/observer_admin</class>
+                        <method>adminhtmlBlockHtmlBefore</method>
+                    </genecms_build_menu>
+                </observers>
+            </adminhtml_block_html_before>
+
+        </events>
+
+        <menutemplate>
+            <gene_bluefoot_app_type>
+                <_code_>
+                    <title>_plural_name_</title>
+                    <sort_order>_sort_order_</sort_order>
+                    <children>
+                        <add>
+                            <title>Add new _singular_name_</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/genecms_entity/new/type_id/_typeid_</action>
+                        </add>
+                        <view_all>
+                            <title>View All _plural_name_</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/genecms_entity/index/type_id/_typeid_</action>
+                        </view_all>
+                    </children>
+                </_code_>
+            </gene_bluefoot_app_type>
+            <gene_bluefoot_app_taxonomy>
+                <_code_>
+                    <title>_taxonomyname_</title>
+                    <sort_order>_sort_order_</sort_order>
+                    <action>adminhtml/genecms_taxonomyterm/index/taxonomy/_taxonomyid_</action>
+                </_code_>
+            </gene_bluefoot_app_taxonomy>
+            <gene_bluefoot_app>
+                <_code_>
+                    <title>_appname_</title>
+                    <sort_order>_sort_order_</sort_order>
+                    <children>
+                        <configure>
+                            <title>Configure</title>
+                            <sort_order>888</sort_order>
+                            <action>adminhtml/genecms_setup_app/edit/id/_appid_</action>
+                        </configure>
+                    </children>
+                </_code_>
+            </gene_bluefoot_app>
+        </menutemplate>
+
+        <layout>
+            <updates>
+                <gene_bluefoot>
+                    <file>gene/bluefoot.xml</file>
+                </gene_bluefoot>
+            </updates>
+        </layout>
+
+    </adminhtml>
+
+    <default>
+        <general>
+            <validator_data>
+                <input_types>
+                    <image>image</image>
+                    <file>file</file>
+                    <entity_list>entity_list</entity_list>
+                    <child_entity>child_entity</child_entity>
+                </input_types>
+            </validator_data>
+        </general>
+        <bluefoot>
+            <developer>
+                <include_jquery>1</include_jquery>
+                <include_google_maps>1</include_google_maps>
+            </developer>
+        </bluefoot>
+        <bluefoot_app>
+            <taxonomies>
+                <prefix_titles>0</prefix_titles>
+            </taxonomies>
+            <sidebar>
+                <show_latest>1</show_latest>
+                <show_dates>1</show_dates>
+                <latest_count>3</latest_count>
+                <show_taxonomies>1</show_taxonomies>
+                <taxonomy_depth>2</taxonomy_depth>
+            </sidebar>
+        </bluefoot_app>
+        <version>
+            <checked_version>0</checked_version>
+            <needs_update>0</needs_update>
+        </version>
+    </default>
+
+</config>

@@ -1,0 +1,75 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Chloe Langford <chloe@gene.co.uk>
+ *
+ * Content List Template
+ * @var $this Gene_BlueFoot_Block_App_View
+ *
+ */
+$_taxonomies = $this->getTaxonomies();
+$_helper = Mage::helper('gene_bluefoot');
+$_dateHelper = Mage::helper('gene_bluefoot/date');
+?>
+
+<div class="bluefoot-content-list-content bluefoot-content-list-terms-only">
+    <?php foreach($_taxonomies as $_taxonomy): ?>
+        <?php $_terms = $this->getTaxonomyTerms($_taxonomy); ?>
+
+        <?php if ($_terms->getSize()): ?>
+
+
+            <h3 class="bluefoot-content-taxonomy-title"><?php echo $_taxonomy->getTitle() ?></h3>
+
+            <?php $_i = 0; foreach ($_terms as $_term): $_i++; ?>
+                <?php $_url = $this->getTermUrl($_term); ?>
+
+                <div class="bluefoot-content-list-items<?php echo ($this->getGridView()) ? ' bluefoot-row' : ''; ?>">
+
+                    <?php if ($this->getGridView()): ?>
+
+                        <div id="bluefoot-content-grid-item-<?php echo $_term->getId(); ?>" class="bluefoot-content-grid-item<?php echo ($_i % 3 == 0) ? ' last' : '' ;?>">
+                            <h3 class="bluefoot-content-item-title">
+                                <a href="<?php echo $_url; ?>"><?php echo $_term->getTitle(); ?></a>
+                            </h3>
+                            <?php if ($_description = $_term->getDescription()): ?>
+                                <div class="bluefoot-content-summary">
+                                    <p><?php echo $_description; ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <button type="button" onclick="location.href='<?php echo $_url; ?>'" class="button bluefoot-read-more-link">
+                                <span><span><?php echo $this->__('View &raquo;'); ?></span></span>
+                            </button>
+                        </div>
+                    <?php else: ?>
+                        <div id="bluefoot-content-list-item-<?php echo $_term->getId(); ?>" class="bluefoot-content-list-item<?php echo ($_i == $_terms->getSize()) ? ' last' : '' ;?>">
+                            <h3 class="bluefoot-content-item-title">
+                                <a href="<?php echo $_url; ?>"><?php echo $_term->getTitle(); ?></a>
+                            </h3>
+                            <?php if ($_description = $_term->getDescription()): ?>
+                                <div class="bluefoot-content-summary">
+                                    <p><?php echo $_description; ?></p>
+                                </div>
+                            <?php endif; ?>
+                            <button type="button" onclick="location.href='<?php echo $_url; ?>'" class="button bluefoot-read-more-link">
+                                <span><span><?php echo $this->__('View &raquo;'); ?></span></span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+
+
+        <?php else: ?>
+
+            <div class="no-content bluefoot-no-content">
+                <p><?php echo $this->__('There isn\'t any content yet'); ?></p>
+            </div>
+
+            <hr/>
+
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>

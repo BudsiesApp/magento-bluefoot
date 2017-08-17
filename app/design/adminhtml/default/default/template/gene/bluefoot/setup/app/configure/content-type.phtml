@@ -1,0 +1,74 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_App_Edit_Tab_Content
+ */
+$types = $this->getContentTypes();
+?>
+
+<style type="text/css">
+    .gene-bluefoot-type-info {
+        padding:0 0 5px 0;
+    }
+
+    .content-type-info{
+        overflow: auto;
+    }
+
+    .content-type-info .heading-col{
+        width:200px;
+        float:left;
+
+    }
+
+    .content-type-info .info-col{
+
+        float:left;
+    }
+
+</style>
+
+    <?php if($this->_getCurrentApp()->getId()): ?>
+        <div class="fieldset-wide fieldset content-fieldset">
+            <button type="button" class="add-new scalable gene-bluefoot" onclick="deleteConfirm('Doing this will remove any unsaved changes from the current page. Do you wish to continue?','<?php echo $this->getCreateUrl(); ?>'); return false; ">Create new Content Type </button>
+        </div>
+
+    <?php else: ?>
+
+        <div class="fieldset-wide fieldset content-fieldset">
+            <p>Please save App before creating content types</p>
+        </div>
+
+    <?php endif; ?>
+
+<?php if($types && count($types)) : ?>
+    <?php foreach ($types as $type) : ?>
+
+        <div class="fieldset-wide fieldset content-fieldset">
+
+            <div class="content-type-info" id="type-info-<?php echo $type->getId(); ?>">
+                <div class="heading-col">
+                    <h3 class="icon-head head-edit-form fieldset-legend content-type"><?php echo $type->getName(); ?></h3>
+                    <p>Internal Id: <?php echo $type->getId(); ?></p>
+                    <button type="button" class="edit-content-type scalable gene-bluefoot" onclick="setLocation('<?php echo $this->getEditUrl($type->getId()); ?>'); return false; ">Edit Content Type</button>
+                </div>
+
+
+                <div class="info-col">
+
+                    <?php foreach($this->getInfoDataFields() as $_infoKey => $_infoLabel): ?>
+                        <div class="gene-bluefoot-type-info">
+                            <strong><?php echo $_infoLabel ?>:</strong> <?php echo $type->getData($_infoKey) ? $type->getData($_infoKey) : '' ?>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <div class="buttons-set gene-bluefoot-type-infotype-info">
+                        <button type="button" class="view-all scalable gene-bluefoot " onclick="setLocation('<?php echo $this->getViewUrl($type->getId()); ?>'); return false; ">View All <?php echo $type->getPluralName(); ?></button>
+                        <button type="button" class="add-new scalable gene-bluefoot" onclick="setLocation('<?php echo $this->getAddUrl($type->getId()); ?>'); return false; ">Add New <?php echo $type->getSingularName(); ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+
+<?php endif; ?>

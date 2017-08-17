@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <gene_bluefoot>
+                    <title>BlueFoot</title>
+                    <sort_order>1</sort_order>
+                    <children>
+                        <setup_attributes>
+                            <title>Content Attributes</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/genecms_setup_attribute</action>
+                        </setup_attributes>
+                        <content_blocks>
+                            <title>Page Builder Blocks</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/genecms_setup_block</action>
+                        </content_blocks>
+                        <content_apps>
+                            <title>Content Apps</title>
+                            <sort_order>50</sort_order>
+                            <action>adminhtml/genecms_setup_app</action>
+                        </content_apps>
+                        <content_app_wizard>
+                            <title>Content App Wizard</title>
+                            <sort_order>55</sort_order>
+                            <action>adminhtml/genecms_setup_appwizard</action>
+                        </content_app_wizard>
+                        <installer>
+                            <title>Installer</title>
+                            <sort_order>70</sort_order>
+                            <action>adminhtml/genecms_setup_installer</action>
+                        </installer>
+                        <config>
+                            <title>Configuration</title>
+                            <sort_order>80</sort_order>
+                            <action>adminhtml/system_config/edit/section/bluefoot</action>
+                        </config>
+                    </children>
+                </gene_bluefoot>
+            </children>
+        </system>
+
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <gene_bluefoot translate="title">
+                                <title>BlueFoot</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <setup_attributes translate="title">
+                                        <title>Content Attributes</title>
+                                        <sort_order>10</sort_order>
+                                    </setup_attributes>
+                                    <content_blocks translate="title">
+                                        <title>Page Builder Blocks</title>
+                                        <sort_order>20</sort_order>
+                                    </content_blocks>
+                                    <content_apps translate="title">
+                                        <title>Content Apps</title>
+                                        <sort_order>50</sort_order>
+                                    </content_apps>
+                                    <content_app_wizard translate="title">
+                                        <title>Content App Wizard</title>
+                                        <sort_order>55</sort_order>
+                                    </content_app_wizard>
+                                    <installer translate="title">
+                                        <title>Installer</title>
+                                        <sort_order>70</sort_order>
+                                    </installer>
+                                    <config translate="title">
+                                        <title>Configuration</title>
+                                        <sort_order>80</sort_order>
+                                    </config>
+                                </children>
+                            </gene_bluefoot>
+                            <config>
+                                <children>
+                                    <bluefoot translate="title">
+                                        <title>BlueFoot</title>
+                                        <sort_order>200</sort_order>
+                                    </bluefoot>
+                                    <bluefoot_app translate="title">
+                                        <title>BlueFoot App</title>
+                                        <sort_order>300</sort_order>
+                                    </bluefoot_app>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <page_builder translate="title">
+                        <title>BlueFoot - Page Builder</title>
+                        <sort_order>0</sort_order>
+                    </page_builder>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+</config>

@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+
+            <action method="addJs" ifconfig="bluefoot/developer/include_jquery">
+                <script>gene/bluefoot/resource/jquery-1.11.3.min.js</script>
+            </action>
+
+            <action method="addCss">
+                <stylesheet>gene/bluefoot/css/bluefoot.css</stylesheet>
+            </action>
+
+            <!-- Google maps @todo - only load this if a maps exists -->
+            <!--<block type="core/text" name="google.cdn.jquery">-->
+                <!--<action method="setText">-->
+                    <!--<text>-->
+                        <!--<![CDATA[<script type="text/javascript" src="//maps.google.com/maps/api/js"></script><script type="text/javascript">jQuery.noConflict();</script>]]>-->
+                    <!--</text>-->
+                <!--</action>-->
+            <!--</block>-->
+
+            <block type="core/template" name="google.cdn.jquery" template="gene/bluefoot/js/google-maps.phtml"/>
+
+            <!-- JQuery No Conflict -->
+            <block type="core/text" name="bluefoot.jquery.no.conflict">
+                <action method="setText">
+                    <text>
+                        <![CDATA[<script type="text/javascript">jQuery.noConflict();</script>]]>
+                    </text>
+                </action>
+            </block>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="gene_bluefoot/debug_main" name="gene_cms.debug.main" template="gene/bluefoot/debug/main.phtml"/>
+        </reference>
+
+
+    </default>
+
+    <!-- BlueFoot App - Default -->
+    <bluefoot_app_default>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+            <action method="addBodyClass"><classname>bluefoot-app</classname></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>gene/bluefoot/resource/jquery/bluefoot-normalise-heights/jquery.bluefoot.normaliseHeights.min.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="page/html_wrapper" name="cms.wrapper" translate="label">
+                <label>BlueFoot Content Wrapper</label>
+            </block>
+        </reference>
+        <reference name="right">
+            <block type="gene_bluefoot/app_taxonomies" name="bluefoot.content.taxonomy.navigation.right" template="gene/bluefoot/apps/html/taxonomy-navigation.phtml" before=""/>
+            <block type="gene_bluefoot/app_taxonomies" name="bluefoot.content.app.latest.right" template="gene/bluefoot/apps/html/latest.phtml" after="bluefoot.content.taxonomy.navigation.right"/>
+        </reference>
+        <reference name="left">
+            <block type="gene_bluefoot/app_view" name="bluefoot.content.taxonomy.navigation.left" template="gene/bluefoot/apps/html/taxonomy-navigation.phtml" before=""/>
+            <block type="gene_bluefoot/app_view" name="bluefoot.content.app.latest.left" template="gene/bluefoot/apps/html/latest.phtml" after="bluefoot.content.taxonomy.navigation.left"/>
+        </reference>
+    </bluefoot_app_default>
+
+    <!-- BlueFoot App Entity View -->
+    <bluefoot_entity_view>
+
+        <update handle="bluefoot_app_default" />
+
+        <reference name="cms.wrapper">
+            <action method="setElementClass">
+                <value>std bluefoot-app-entity-content</value>
+            </action>
+
+            <!-- Heading -->
+            <block type="gene_bluefoot/entity_content_view" name="bluefoot.content.view.heading" template="gene/bluefoot/apps/entity/html/content_heading.phtml"/>
+            <!-- Meta -->
+            <block type="gene_bluefoot/entity_content_view" name="bluefoot.content.view.meta" template="gene/bluefoot/apps/entity/html/meta.phtml"/>
+            <!-- Sharing -->
+            <block type="gene_bluefoot/entity_content_view" name="bluefoot.content.view.share" template="gene/bluefoot/apps/entity/html/share.phtml" ifconfig="bluefoot_app/sharing/enable_sharing"/>
+            <!-- Main Content -->
+            <block type="gene_bluefoot/entity_content_view" name="bluefoot.content.view" template="gene/bluefoot/apps/entity/view.phtml"/>
+            <!-- Main Content -->
+            <block type="gene_bluefoot/entity_content_view" name="bluefoot.content.view.taxonomies" template="gene/bluefoot/apps/entity/html/taxonomies.phtml"/>
+            <!-- Comments -->
+            <block type="gene_bluefoot/entity_content_view" name="bluefoot.content.view.comments" template="gene/bluefoot/apps/entity/html/comments.phtml" after="" ifconfig="bluefoot_app/comments/enable_comments"/>
+
+        </reference>
+    </bluefoot_entity_view>
+
+
+
+    <!-- BlueFoot App View -->
+    <bluefoot_app_view>
+
+        <update handle="bluefoot_app_default" />
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-view-default</classname></action>
+        </reference>
+        <reference name="cms.wrapper">
+            <action method="setElementClass">
+                <value>std bluefoot-app-view-content</value>
+            </action>
+            <!-- Main Content -->
+            <block type="gene_bluefoot/app_view" name="bluefoot.app.view.head" template="gene/bluefoot/apps/heading.phtml"/>
+            <block type="gene_bluefoot/app_view" name="bluefoot.app.view" template="gene/bluefoot/apps/view/default.phtml"/>
+        </reference>
+    </bluefoot_app_view>
+
+    <!-- BlueFoot App View - All -->
+    <bluefoot_app_view_MODE_content_all>
+    </bluefoot_app_view_MODE_content_all>
+
+    <!-- BlueFoot App View - Split view (separated by content type) -->
+    <bluefoot_app_view_MODE_content_split>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-view-split</classname></action>
+        </reference>
+        <reference name="bluefoot.app.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/split.phtml</template></action>
+        </reference>
+    </bluefoot_app_view_MODE_content_split>
+
+    <!-- BlueFoot App View - No Content -->
+    <bluefoot_app_view_MODE_no_content>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-view-no-content</classname></action>
+        </reference>
+        <remove name="bluefoot.app.view" />
+    </bluefoot_app_view_MODE_no_content>
+
+    <!-- BlueFoot App View - Taxonomy Terms -->
+    <bluefoot_app_view_MODE_taxonomy_terms>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-view-default-taxonomy-terms</classname></action>
+        </reference>
+        <reference name="bluefoot.app.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/terms.phtml</template></action>
+        </reference>
+    </bluefoot_app_view_MODE_taxonomy_terms>
+
+    <!-- BlueFoot App View - Taxonomy Terms + Split View -->
+    <bluefoot_app_view_MODE_taxonomy_terms_content_split>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-view-split-taxonomy-terms</classname></action>
+        </reference>
+        <reference name="bluefoot.app.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/terms.phtml</template></action>
+        </reference>
+        <reference name="cms.wrapper">
+            <block type="gene_bluefoot/app_view" name="bluefoot.app.view.content" template="gene/bluefoot/apps/view/split.phtml"/>
+        </reference>
+    </bluefoot_app_view_MODE_taxonomy_terms_content_split>
+
+    <!-- BlueFoot App View - Taxonomy Terms + Default View -->
+    <bluefoot_app_view_MODE_taxonomy_terms_content_all>
+        <reference name="bluefoot.app.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/terms.phtml</template></action>
+        </reference>
+        <reference name="cms.wrapper">
+            <block type="gene_bluefoot/app_view" name="bluefoot.app.view.content" template="gene/bluefoot/apps/view/default.phtml"/>
+        </reference>
+    </bluefoot_app_view_MODE_taxonomy_terms_content_all>
+
+
+    <!-- BlueFoot App Term View -->
+    <bluefoot_app_taxonomy_term_view>
+
+        <update handle="bluefoot_app_default" />
+
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-taxonomy-term-view-default</classname></action>
+        </reference>
+        <reference name="cms.wrapper">
+            <action method="setElementClass">
+                <value>std bluefoot-app bluefoot-app-taxonomy-term-view-content</value>
+            </action>
+            <!-- Main Content -->
+            <block type="gene_bluefoot/app_term_view" name="bluefoot.app.term.view.head" template="gene/bluefoot/apps/view/term/heading.phtml"/>
+            <block type="gene_bluefoot/app_term_view" name="bluefoot.app.term.view" template="gene/bluefoot/apps/view/default.phtml"/>
+        </reference>
+
+    </bluefoot_app_taxonomy_term_view>
+
+    <bluefoot_app_taxonomy_term_view_MODE_content_all>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-taxonomy-term-view-all</classname></action>
+        </reference>
+        <reference name="bluefoot.app.term.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/default.phtml</template></action>
+        </reference>
+    </bluefoot_app_taxonomy_term_view_MODE_content_all>
+
+    <bluefoot_app_taxonomy_term_view_MODE_content_split>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-taxonomy-term-view-split</classname></action>
+        </reference>
+        <reference name="bluefoot.app.term.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/split.phtml</template></action>
+        </reference>
+    </bluefoot_app_taxonomy_term_view_MODE_content_split>
+
+    <bluefoot_app_taxonomy_term_view_MODE_no_content>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-taxonomy-term-view-no-content</classname></action>
+        </reference>
+        <remove name="bluefoot.app.term.view" />
+    </bluefoot_app_taxonomy_term_view_MODE_no_content>
+
+    <bluefoot_app_taxonomy_term_view_MODE_term_list>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-taxonomy-term-view-child-terms</classname></action>
+        </reference>
+        <reference name="bluefoot.app.term.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/term/child-terms.phtml</template></action>
+        </reference>
+    </bluefoot_app_taxonomy_term_view_MODE_term_list>
+
+    <bluefoot_app_taxonomy_term_view_MODE_term_list_content>
+        <reference name="root">
+            <action method="addBodyClass"><classname>bluefoot-app-taxonomy-term-view-child-terms-default</classname></action>
+        </reference>
+        <reference name="bluefoot.app.term.view">
+            <action method="setTemplate"><template>gene/bluefoot/apps/view/term/child-terms-content.phtml</template></action>
+        </reference>
+    </bluefoot_app_taxonomy_term_view_MODE_term_list_content>
+
+
+</layout>
+

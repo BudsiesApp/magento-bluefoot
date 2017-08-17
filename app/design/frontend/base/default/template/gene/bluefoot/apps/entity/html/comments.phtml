@@ -1,0 +1,41 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Comments template
+ * Comments are powered by Disqus <https://disqus.com/>
+ * To use comments please enable them globally and add your unique Disqus url (System -> Configuration -> BlueFoot -> Comments)
+ *
+ * @var $this Gene_BlueFoot_Block_Entity_Content_View
+ *
+ */
+$_entity = $this->getEntity();
+$_disqusUrl = Mage::getStoreConfig('bluefoot_app/comments/disqus_url');
+?>
+<?php if($_entity->getEnableComments() && $_disqusUrl):?>
+
+    <div class="bluefoot-content-view-comments">
+        <h3><?php echo $this->__('Comments'); ?></h3>
+        <div id="disqus_thread"></div>
+        <script>
+             var disqus_config = function () {
+                //this.page.url = PAGE_URL;
+                this.page.identifier = "<?php echo 'bluefoot-entity-' . $_entity->getID(); ?>"
+             };
+
+            (function() {
+                var d = document, s = d.createElement('script');
+
+                s.src = '//<?php echo $_disqusUrl; ?>';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript><?php echo $this->__('Please enable JavaScript to view the %scomments powered by Disqus.%s', '<a href="https://disqus.com/?ref_noscript" rel="nofollow">', '</a>'); ?></noscript>
+    </div>
+
+<?php endif; ?>

@@ -1,0 +1,22 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ *
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Button Item Template
+ * @var $this Gene_BlueFoot_Block_Entity_Pagebuilder_Block_Default
+ *
+ */
+$_entity = $this->getEntity();
+$target = $_entity->getTargetBlank() ? '_blank' : '_self';
+?>
+
+<button type="button"
+        onclick="window.open('<?php echo $_entity->getLinkUrl(); ?>', '<?php echo $target; ?>')"
+        class="bluefoot-button button <?php echo $this->getCssAttributes(); ?>"
+        <?php echo $this->getStyleAttributes(); ?> >
+    <span><span><?php echo $_entity->getLinkText(); ?></span></span>
+</button>

@@ -1,0 +1,36 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Taxonomy navigation Template
+ *
+ * @var $this Gene_BlueFoot_Block_App_View
+ *
+ */
+$_taxonomies = $this->getTaxonomies();
+?>
+<?php if ($_taxonomies && Mage::getStoreConfig('bluefoot_app/sidebar/show_taxonomies')): ?>
+
+    <div class="bluefoot-content-taxonomy-navigation block block-layered-nav">
+        <div class="block-content toggle-content">
+            <p class="block-subtitle block-subtitle--filter"><?php echo $this->__('Navigate') ?></p>
+            <dl id="narrow-by-list">
+
+                <?php foreach($_taxonomies as $_taxonomy): ?>
+                    <?php $_terms = $this->getParentTaxonomyTerms($_taxonomy); ?>
+                    <?php if ($_terms && count($_terms)): ?>
+                        <dt><?php echo $_taxonomy->getTitle(); ?></dt>
+                        <dd class="bluefoot-content-view-taxonomy-list <?php echo strtolower($_taxonomy->getTitle()) ?>">
+                            <ol class="bluefoot-taxonomy-menu-1 bluefoot-taxonomy-menu-main"><?php echo ($this->getHtml($_taxonomy)); ?></ol>
+                        </dd>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </dl>
+            <script type="text/javascript">decorateDataList('narrow-by-list')</script>
+        </div>
+    </div>
+<?php endif; ?>
+

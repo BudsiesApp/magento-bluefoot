@@ -1,0 +1,14 @@
+app/code/community/Gene/BlueFoot /app/code/community/Gene/BlueFoot
+app/design/adminhtml/default/default/layout/gene/bluefoot.xml app/design/adminhtml/default/default/layout/gene/bluefoot.xml
+app/design/adminhtml/default/default/template/gene/bluefoot app/design/adminhtml/default/default/template/gene/bluefoot
+app/design/frontend/base/default/layout/gene/bluefoot.xml app/design/frontend/base/default/layout/gene/bluefoot.xml
+app/design/frontend/base/default/template/gene/bluefoot app/design/frontend/base/default/template/gene/bluefoot
+app/etc/modules/Gene_BlueFoot.xml app/etc/modules/Gene_BlueFoot.xml
+js/gene/bluefoot js/gene/bluefoot
+skin/adminhtml/default/default/gene/bluefoot skin/adminhtml/default/default/gene/bluefoot
+js/tiny_mce/themes/advanced/skins/bootstrap js/tiny_mce/themes/advanced/skins/bootstrap
+skin/frontend/base/default/gene/bluefoot skin/frontend/base/default/gene/bluefoot
+
+app/design/frontend/rwd/default/template/gene/bluefoot app/design/frontend/rwd/default/template/gene/bluefoot
+app/design/frontend/rwd/default/layout/gene/bluefoot-rwd.xml app/design/frontend/rwd/default/layout/gene/bluefoot-rwd.xml
+skin/frontend/rwd/default/gene/bluefoot skin/frontend/rwd/default/gene/bluefoot

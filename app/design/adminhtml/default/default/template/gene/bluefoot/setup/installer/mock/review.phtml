@@ -1,0 +1,142 @@
+<?php
+/**
+ * @var $this Gene_BlueFoot_Block_Adminhtml_Setup_Installer_Review_Form
+ * @TODO Tidy up
+ */
+$installer = $this->getInstaller();
+$log = $installer->getLog();
+$createdEntities = $installer->getCreatedEntities();
+?>
+<style type="text/css">
+    .installer-log-row{
+        margin: 0 0 10px 0;
+        overflow: hidden;
+    }
+</style>
+<div class="entry-edit">
+    <?php echo $this->getFormHtml();?>
+</div>
+<?php echo $this->getChildHtml('form_after');?>
+
+<div class="box-left">
+    <?php if(is_array($createdEntities)): ?>
+        <?php foreach($createdEntities as $installerType => $installerEntities): ?>
+        <div class="entry-edit">
+            <fieldset class="np">
+                <div class="content">
+                    <div class="hor-scroll">
+                        <h4>Installer: <?php echo $installerType; ?></h4>
+                        <?php if(is_array($installerEntities) && count($installerEntities)): ?>
+                            <?php foreach($installerEntities as $installerEntity): ?>
+                                <?php if($installerEntity instanceof Gene_BlueFoot_Model_Attribute): ?>
+                                    Attribute:
+                                    <?php
+                                    $label = $installerEntity->getFrontendLabel();
+                                    if(is_array($label)){
+                                        echo isset($label[0]) ? $label[0] : 'Unknown';
+                                    }elseif(is_string($label)){
+                                        echo $label;
+                                    }
+                                    ?>
+                                    [<?php echo $installerEntity->getAttributeCode() ?>]<br/>
+                                <?php elseif($installerEntity instanceof Gene_BlueFoot_Model_Type): ?>
+                                    <?php if($installerEntity->getContentType() == 'block'): ?>Content Block: <? else: ?>Content Type: <?php endif; ?>
+                                    <?php echo $installerEntity->getName(); ?><br/>
+                                <?php elseif($installerEntity instanceof Gene_BlueFoot_Model_Taxonomy): ?>
+                                    Taxonomy:
+                                    <?php echo $installerEntity->getTitle(); ?><br/>
+                                <?php elseif(is_array($installerEntity)): ?>
+
+                                    <?php foreach($installerEntity as $subInstallerEntity): ?>
+                                        <?php if($subInstallerEntity instanceof Gene_BlueFoot_Model_App): ?>
+                                            App:
+                                            <?php echo $subInstallerEntity->getTitle(); ?>
+                                        <?php elseif($subInstallerEntity instanceof Gene_BlueFoot_Model_Attribute): ?>
+                                            Attribute:
+                                            <?php
+                                            $label = $subInstallerEntity->getFrontendLabel();
+                                            if(is_array($label)){
+                                                echo isset($label[0]) ? $label[0] : 'Unknown';
+                                            }elseif(is_string($label)){
+                                                echo $label;
+                                            }
+                                            ?>
+                                            [<?php echo $subInstallerEntity->getAttributeCode() ?>]<br/>
+                                        <?php elseif($subInstallerEntity instanceof Gene_BlueFoot_Model_Type): ?>
+                                            <?php if($subInstallerEntity->getContentType() == 'block'): ?>Content Block: <? else: ?>Content Type: <?php endif; ?>
+                                            <?php echo $subInstallerEntity->getName(); ?>
+                                        <?php elseif($subInstallerEntity instanceof Gene_BlueFoot_Model_Taxonomy): ?>
+                                            Taxonomy:
+                                            <?php echo $subInstallerEntity->getTitle(); ?>
+                                        <?php endif; ?>
+                                        <br/>
+
+                                    <?php endforeach; ?>
+                                    <br/>
+<!--                                    <pre>--><?php //print_r($installerEntity); ?><!--</pre>-->
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
+                        <?php else: ?>
+                            <p>Nothing installed</p>
+                        <?php endif; ?>
+
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
+<div class="box-right">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head fieldset-legend">Log Output</h4>
+        </div>
+        <fieldset class="np">
+            <div class="content">
+                <div class="hor-scroll">
+                    <?php foreach($log as $logEntry): ?>
+                        <?php if($logEntry->getMessage() == '-'): ?>
+                            <?php echo str_repeat('-', 100)  . '<br/><br/>'; continue; ?>
+                        <?php endif; ?>
+
+                        <?php
+                        if($logEntry->getType() == 'error'){$class = 'error-msg';}else{$class='notification-global-notice';}
+                        ?>
+
+                        <div class="notification-global installer-log-row <?php echo $class; ?>">
+                            <h4><?php echo $logEntry->getMessage(); ?></h4>
+                            <?php if(is_array($logEntry->getMessageData())): ?>
+                                <?php foreach($logEntry->getMessageData() as $messageDataKey => $messageData): ?>
+                                    <?php if(!is_numeric($messageDataKey)): ?>
+                                        <strong><?php echo $messageDataKey; ?></strong>
+                                    <?php endif; ?>
+                                    <?php if(is_string($messageData)): ?>
+                                        <?php echo $messageData; ?>
+                                    <?php elseif(is_array($messageData)): ?>
+                                        <?php foreach($messageData as $subMsgKey => $subMsgData): ?>
+                                            <?php if(!is_numeric($subMsgKey)): ?>
+                                                <strong><?php echo $subMsgKey; ?></strong>
+                                            <?php endif; ?>
+                                            <?php if(is_string($subMsgData)): ?>
+                                                <?php echo $subMsgData; ?>
+                                            <?php else: ?>
+                                                <?php if($subMsgData instanceof Varien_Object): ?>
+                                                    <?php echo $subMsgData->getTitle() ? $subMsgData->getTitle() : $subMsgData->getName(); ?>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                            <br/>
+
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                <?php endforeach ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

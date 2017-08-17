@@ -1,0 +1,76 @@
+<?php
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Hob Adams <hob@gene.co.uk>
+ *
+ * Single App Entity
+ * @var $this Gene_BlueFoot_Block_Entity_Pagebuilder_Block_App_Single
+ *
+ */
+$_entity = $this->getEntity();
+$_dateHelper = Mage::helper('gene_bluefoot/date');
+$_imageHelper = Mage::helper('gene_bluefoot/image');
+?>
+<?php if ($_appEntity = $this->getAppEntity()): ?>
+    <?php if (strtolower($this->getAttributeText('app_display')) == 'grid'): ?>
+        <?php /* Grid View */ ?>
+        <div id="bluefoot-app-entity-<?php echo $_entity->getId(); ?>" class="bluefoot-content-grid-item <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>">
+            <?php if ($_image = $_appEntity->getFeaturedImage()): ?>
+                <a href="<?php echo $this->getEntityUrl($_appEntity); ?>" class="bluefoot-content-featured-image">
+                    <img src="<?php echo $_imageHelper->init($_image)->useConfig('thumbnail'); ?>" alt="<?php echo $_appEntity->getTitle(); ?>"/>
+                </a>
+            <?php endif; ?>
+
+            <h3 class="bluefoot-content-item-title">
+                <a href="<?php echo $this->getEntityUrl($_appEntity); ?>"><?php echo $_appEntity->getTitle(); ?></a>
+            </h3>
+
+            <?php if ($_date = $_appEntity->getPublishedDate()): ?>
+                <div class="bluefoot-content-meta">
+                    <p class="bluefoot-published-date"><?php echo $this->__('Published %s', $_dateHelper->getFriendlyDateTime(strtotime($_date))); ?></p>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($_excerpt = $_appEntity->getExcerpt()): ?>
+                <div class="bluefoot-content-summary">
+                    <p><?php echo $_excerpt; ?></p>
+                </div>
+            <?php endif; ?>
+
+            <button type="button" onclick="location.href='<?php echo $this->getEntityUrl($_appEntity); ?>'" class="button bluefoot-read-more-link">
+                <span><span><?php echo $this->__('Continue Reading &raquo;'); ?></span></span>
+            </button>
+        </div>
+
+    <?php else: ?>
+        <?php /* Default View */ ?>
+        <div id="bluefoot-app-entity-<?php echo $_entity->getId(); ?>" class="bluefoot-content-list-item <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>">
+            <?php if ($_image = $_appEntity->getFeaturedImage()): ?>
+                <a href="<?php echo $this->getEntityUrl($_appEntity); ?>" class="bluefoot-content-featured-image">
+                     <img src="<?php echo $_imageHelper->init($_image)->useConfig('medium'); ?>" alt="<?php echo $_appEntity->getTitle(); ?>"/>
+                </a>
+            <?php endif; ?>
+
+            <h3 class="bluefoot-content-item-title">
+                <a href="<?php echo $this->getEntityUrl($_appEntity); ?>"><?php echo $_appEntity->getTitle(); ?></a>
+            </h3>
+
+            <?php if ($_date = $_appEntity->getPublishedDate()): ?>
+                <div class="bluefoot-content-meta">
+                    <p class="bluefoot-published-date"><?php echo $this->__('Published %s', $_dateHelper->getFriendlyDateTime(strtotime($_date))); ?></p>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($_excerpt = $_appEntity->getExcerpt()): ?>
+                <div class="bluefoot-content-summary">
+                    <p><?php echo $_excerpt; ?></p>
+                </div>
+            <?php endif; ?>
+            <button type="button" onclick="location.href='<?php echo $this->getEntityUrl($_appEntity); ?>'" class="button bluefoot-read-more-link">
+                <span><span><?php echo $this->__('Continue Reading &raquo;'); ?></span></span>
+            </button>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
