@@ -1,4 +1,10 @@
 {
-  "name": "bluefoot/bluefoot",
-  "type": "magento-module"
+  "name": "BudsiesApp/magento-bluefoot",
+  "type": "magento-module",
+  "authors":[
+    {
+      "name":"Kochnov Denis",
+      "email":"d.kochnov.optimus@gmail.com"
+    }
+  ]
 }
