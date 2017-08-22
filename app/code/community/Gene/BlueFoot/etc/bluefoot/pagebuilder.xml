@@ -40,11 +40,11 @@
                 <assets>
                     <fancybox_css>
                         <type>js_css</type>
-                        <name>gene/bluefoot/resource/jquery/fancybox/jquery.fancybox.min.css</name>
+                        <name>gene/bluefoot/resource/jquery/fancybox/jquery.fancybox.css</name>
                     </fancybox_css>
                     <fancybox_js>
                         <type>js</type>
-                        <name>gene/bluefoot/resource/jquery/fancybox/jquery.fancybox.min.js</name>
+                        <name>gene/bluefoot/resource/jquery/fancybox/jquery.fancybox.pack.js</name>
                     </fancybox_js>
                 </assets>
             </core_image>
