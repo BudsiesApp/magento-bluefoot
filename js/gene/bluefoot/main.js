@@ -43,7 +43,8 @@ require.config({
             /* Map the abstract widget to the input type widget */
             'bluefoot/widget/abstract': 'bluefoot/field/abstract'
         }
-    }
+    },
+    waitSeconds: 30
 });
 
 // The app requires the core hook system to be running very early on
