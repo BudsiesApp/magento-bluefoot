@@ -33,6 +33,10 @@ class Gene_BlueFoot_Adminhtml_Stage_Widget_UploadController extends Gene_BlueFoo
             // Attempt to save the file
             if ($uploaded = $fileUploader->save(Mage::helper('gene_bluefoot/config')->getUploadDir())) {
 
+                $fileObject = new Varien_Object($uploaded);
+                Mage::dispatchEvent('gene_bluefoot_file_uploaded', ['fileObject' => $fileObject]);
+                $uploaded['file'] = (string)$fileObject->getFile();
+
                 // Return a success callback once the file has been uploaded
                 return $this->returnJson(array('success' => true, 'file' => $uploaded['file']));
 
