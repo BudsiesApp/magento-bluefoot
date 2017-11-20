@@ -287,13 +287,13 @@
             <input_type>text</input_type>
             <group>BlueFoot</group>
         </gene_color>
-        <gene_map translate="label">
-            <label>Google Map</label>
-            <alias>map</alias>
-            <input_type>text</input_type>
-            <group>BlueFoot</group>
-            <data_model>gene_bluefoot/attribute_data_widget_map</data_model>
-        </gene_map>
+        <!--<gene_map translate="label">-->
+        <!--<label>Google Map</label>-->
+        <!--<alias>map</alias>-->
+        <!--<input_type>text</input_type>-->
+        <!--<group>BlueFoot</group>-->
+        <!--<data_model>gene_bluefoot/attribute_data_widget_map</data_model>-->
+        <!--</gene_map>-->
         <gene_search_product translate="label">
             <label>Product Search</label>
             <alias>search/product</alias>
@@ -375,12 +375,12 @@
                     <path>widget/core/tags</path>
                 </gene_tags_widget>
             </gene_widget_tags>
-            <gene_widget_map>
-                <gene_map_widget>
-                    <alias>bluefoot/widget/map</alias>
-                    <path>widget/core/map</path>
-                </gene_map_widget>
-            </gene_widget_map>
+            <!--<gene_widget_map>-->
+            <!--<gene_map_widget>-->
+            <!--<alias>bluefoot/widget/map</alias>-->
+            <!--<path>widget/core/map</path>-->
+            <!--</gene_map_widget>-->
+            <!--</gene_widget_map>-->
             <gene_widget_child_blocks>
                 <gene_child_blocks_widget>
                     <alias>bluefoot/widget/child_block</alias>
@@ -487,11 +487,11 @@
         </jquery>
 
         <!-- Any remote async plugins to be loaded within the admin -->
-        <async>
-            <google_maps>
-                <path>//maps.google.com/maps/api/js</path>
-            </google_maps>
-        </async>
+        <!--<async>-->
+        <!--<google_maps>-->
+        <!--<path>//maps.google.com/maps/api/js</path>-->
+        <!--</google_maps>-->
+        <!--</async>-->
     </plugins>
 
     <!-- Declare widgets and input types that have functions that need to run on build -->
