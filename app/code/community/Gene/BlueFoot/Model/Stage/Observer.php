@@ -34,8 +34,8 @@ class Gene_BlueFoot_Model_Stage_Observer
      */
     public function registerAutoLoader()
     {
-        // Check the version
-        Mage::helper('gene_bluefoot/version')->checkVersion();
+        // Disable check for new versions for acceleration reasons because Bluefoot will no longer be updated
+        //Mage::helper('gene_bluefoot/version')->checkVersion();
 
         // We're going to add in an auto loader between classes
         spl_autoload_unregister(array(Varien_Autoload::instance(), 'autoload'));
