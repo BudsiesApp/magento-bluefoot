@@ -29,12 +29,12 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
     InputField.prototype.afterRenderField = function ($hook) {
 
         this.element.find('input').first().autocomplete({
-            source: Config.getPluginConfig('gene_widget_search_custom_entity','source_url'),
+            source: Config.getPluginConfig('gene_widget_search_campaign','source_url'),
             appendTo: "#" + this.getId() + "_wrapper",
             minLength: 2,
             select: function(event, ui) {
-                jQuery( "#" + this.getId()).val(ui.item.id).data("custom_entity-name", ui.item.value);
-                jQuery( "#" + this.getId()).val(ui.item.id).data("custom_entity-name", ui.item.value);
+                jQuery( "#" + this.getId()).val(ui.item.id).data("campaign-name", ui.item.value);
+                jQuery( "#" + this.getId()).val(ui.item.id).data("campaign-name", ui.item.value);
             }.bind(this),
             search: function(event, ui) {
                 jQuery( "#" + this.getId()).parent().addClass("searching");
@@ -65,13 +65,13 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
             fakeId = this.getId() + "_autocomplete",
             placeholder = '';
 
-        // Get the custom_entity name for the placeholder text
+        // Get the campaign name for the placeholder text
         if( this.entity.data.hasOwnProperty("preview_view")
             && typeof this.entity.data["preview_view"][ this.field.code ] !== 'undefined'
-            && typeof this.entity.data["preview_view"][ this.field.code ]["custom_entity"]["name"] !== 'undefined'
-            && this.entity.data["preview_view"][ this.field.code ]["custom_entity"]["name"])
+            && typeof this.entity.data["preview_view"][ this.field.code ]["campaign"]["name"] !== 'undefined'
+            && this.entity.data["preview_view"][ this.field.code ]["campaign"]["name"])
         {
-            placeholder = this.entity.data["preview_view"][ this.field.code ]["custom_entity"]["name"];
+            placeholder = this.entity.data["preview_view"][ this.field.code ]["campaign"]["name"];
         }
 
         // Build elements
@@ -85,7 +85,7 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
 
             // Append an input we're going to use for searching
             jQuery('<input />').attr({
-                name: this.field.code + "_custom_entity_name",
+                name: this.field.code + "_campaign_name",
                 type: this.getType(),
                 id: fakeId
             }).val(placeholder),
