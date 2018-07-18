@@ -16,7 +16,7 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
     var $super = AbstractField.prototype;
 
     /**
-     * Attach hooks for the color widget
+     * Attach hooks
      */
     InputField.prototype.attachHooks = function () {
         Hook.attach('gene-bluefoot-after-render-field-' + this.field.fieldType, this.afterRenderField.bind(this), this.edit.stage);
@@ -33,7 +33,6 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
             appendTo: "#" + this.getId() + "_wrapper",
             minLength: 2,
             select: function(event, ui) {
-                jQuery( "#" + this.getId()).val(ui.item.id).data("campaign-name", ui.item.value);
                 jQuery( "#" + this.getId()).val(ui.item.id).data("campaign-name", ui.item.value);
             }.bind(this),
             search: function(event, ui) {
