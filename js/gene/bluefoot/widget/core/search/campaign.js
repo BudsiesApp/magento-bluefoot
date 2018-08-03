@@ -73,6 +73,10 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
             placeholder = this.entity.data["preview_view"][ this.field.code ]["campaign"]["name"];
         }
 
+        if (this.entity.data[this.field.code + "_campaign_name"]) {
+            placeholder = this.entity.data[this.field.code + "_campaign_name"];
+        }
+
         // Build elements
         this.element = jQuery('<div />').addClass('gene-bluefoot-search-field gene-bluefoot-input-field gene-bluefoot-input-loading-indicator');
         this.element.attr("id", this.getId() + "_wrapper");
