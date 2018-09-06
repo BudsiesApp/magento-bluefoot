@@ -1,12 +1,7 @@
+<script id="cms-config" type="text/json"><?php echo $this->getConfig(); ?></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 <script data-main="<?php echo $this->getJsUrl('gene/bluefoot/main'); ?>" src="<?php echo $this->getJsUrl('gene/bluefoot/resource/require.js'); ?>"></script>
-<script type="text/javascript">
-    // Define a noConflict version of jQuery
-    define('bluefoot/cms-config', [], function () {
-        return JSON.parse('<?php echo $this->getConfig(); ?>');
-    });
-</script>
 
 <?php
 /**
