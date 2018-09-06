@@ -47,6 +47,11 @@ require.config({
     waitSeconds: 30
 });
 
+define('bluefoot/cms-config', [], function () {
+    var json = jQuery('#cms-config').text();
+    return JSON.parse(json);
+});
+
 // The app requires the core hook system to be running very early on
 require(['bluefoot/hook'], function () {
 
