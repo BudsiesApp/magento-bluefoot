@@ -56,13 +56,6 @@
                     </stage_template>
                 </entities>
             </gene_bluefoot_resource>
-
-            <sitemap>
-                <rewrite>
-                    <sitemap>Gene_BlueFoot_Model_Rewrite_Sitemap</sitemap>
-                </rewrite>
-            </sitemap>
-
         </models>
 
         <blocks>
