@@ -35,6 +35,11 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
             select: function(event, ui) {
                 jQuery( "#" + this.getId()).val(ui.item.id).data("campaign-name", ui.item.value);
             }.bind(this),
+            change: function(event, ui) {
+                if (this.element.find('input').val() === "") {
+                    jQuery( "#" + this.getId()).val("");
+                }
+            }.bind(this),
             search: function(event, ui) {
                 jQuery( "#" + this.getId()).parent().addClass("searching");
                 jQuery("#" + this.getId() + "_autocomplete").removeClass("gene-bluefoot-field-failed");
@@ -67,6 +72,7 @@ define(['bluefoot/config', 'bluefoot/jquery', 'bluefoot/hook', 'bluefoot/widget/
         // Get the campaign name for the placeholder text
         if( this.entity.data.hasOwnProperty("preview_view")
             && typeof this.entity.data["preview_view"][ this.field.code ] !== 'undefined'
+            && typeof this.entity.data["preview_view"][ this.field.code ]["campaign"] !== 'undefined'
             && typeof this.entity.data["preview_view"][ this.field.code ]["campaign"]["name"] !== 'undefined'
             && this.entity.data["preview_view"][ this.field.code ]["campaign"]["name"])
         {
