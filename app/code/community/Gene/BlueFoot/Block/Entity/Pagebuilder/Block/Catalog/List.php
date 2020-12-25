@@ -79,7 +79,7 @@ class Gene_BlueFoot_Block_Entity_Pagebuilder_Block_Catalog_List extends Mage_Cat
 
     /**
      * Convert classes to an array with only unique values
-     * @param bool|false $string
+     * @param string|false $string
      * @return array
      */
     public function parseCss($string = false)
