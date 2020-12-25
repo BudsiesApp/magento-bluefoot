@@ -13,7 +13,6 @@ class Gene_BlueFoot_Adminhtml_Stage_Widget_SearchController extends Gene_BlueFoo
     protected $_labelField = 'name';
     /**
      * Perform a search within the specified context
-     * @return string JSON formatted results
      */
     public function searchAction()
     {

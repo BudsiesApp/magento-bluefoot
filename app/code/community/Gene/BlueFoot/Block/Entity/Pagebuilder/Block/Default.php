@@ -25,7 +25,7 @@ class Gene_BlueFoot_Block_Entity_Pagebuilder_Block_Default extends Mage_Core_Blo
      * Return the attribute text from the entity
      *
      * @param $key
-     * @return null
+     * @return mixed|null
      */
     protected function getAttributeText($key)
     {
@@ -145,7 +145,7 @@ class Gene_BlueFoot_Block_Entity_Pagebuilder_Block_Default extends Mage_Core_Blo
 
     /**
      * Convert classes to an array with only unique values
-     * @param bool|false $string
+     * @param string|false $string
      * @return array
      */
     public function parseCss($string = false)
