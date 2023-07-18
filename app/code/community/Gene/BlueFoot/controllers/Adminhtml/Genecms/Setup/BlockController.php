@@ -161,7 +161,7 @@ class Gene_BlueFoot_Adminhtml_Genecms_Setup_BlockController extends Gene_BlueFoo
         }
 
         // Set the content type
-        $this->getResponse()->setHeader('Content-type', 'application/json');
+        $this->getResponse()->setHeader('Content-type', 'application/json', true);
 
         // Set the body of the return
         $this->getResponse()->setBody($array);

@@ -174,7 +174,7 @@ class Gene_BlueFoot_Adminhtml_StageController extends Mage_Adminhtml_Controller_
         }
 
         // Set the content type
-        $this->getResponse()->setHeader('Content-type', 'application/json');
+        $this->getResponse()->setHeader('Content-type', 'application/json', true);
 
         // Set the body of the return
         $this->getResponse()->setBody($array);
